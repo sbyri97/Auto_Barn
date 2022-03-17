@@ -21,7 +21,7 @@ class Car(db.Model):
 
   user = db.relationship("User", back_populates="cars")
   bookings = db.relationship("Booking", back_populates="car", cascade="all, delete")
-  images = db.relationship("Image", back_populates="car", cascade="all, delete", lazy='joined')
+  images = db.relationship("Image", back_populates="car", cascade="all, delete, delete-orphan", lazy='joined')
 
   def to_dict(self):
       return {

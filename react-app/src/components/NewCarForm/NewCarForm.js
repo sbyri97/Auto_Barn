@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import InfoOne from './InfoOne';
 import * as carActions from '../../store/car'
 import InfoTwo from './InfoTwo';
@@ -9,7 +9,7 @@ import Images from './Images';
 
 export default function NewCarForm() {
     const sessionUser = useSelector((state) => state.session.user);
-    const [errors, setErrors] = useState([]);
+    const [validationErrors, setValidationErrors] = useState([]);
 
 
     const [price, setPrice] = useState(0);
@@ -28,6 +28,7 @@ export default function NewCarForm() {
     const [imageUrl, setImageUrl] = useState("")
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const car = {
         price,
@@ -47,12 +48,11 @@ export default function NewCarForm() {
         e.preventDefault();
         const data = await dispatch(carActions.newCar(car));
         console.log(data);
-        if (data) {
-          setErrors(data);
+        if (data && data.errors) {
+            setValidationErrors(data.errors)
         }
-        if (sessionUser) {
-            return <Redirect to='/' />;
-        }
+
+        history.push('/')
       };
 
 
@@ -73,13 +73,13 @@ export default function NewCarForm() {
       return (
         <div className="mainFormPageContainer">
             <form className='formMainDiv' onSubmit={onLogin}>
-                {/* <div className='errors'>
-                {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
-                ))}
-                </div> */}
+                <h2 className='playlist-form-title'>Continue to Host Your Vehicle.</h2>
+                <div className='errors'>
+                    {validationErrors?.map((error, ind) => (
+                        <div key={ind}>{error}</div>
+                    ))}
+                </div>
                 <div className='formWelcomeBox'>
-                <h2 className='formWelcomeBoxTxt'>Continue to Host Your Vehicle.</h2>
                 </div>
                 <div>
                     <InfoOne states={states}/>
