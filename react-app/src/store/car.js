@@ -15,9 +15,10 @@ export const newCar = (car) => async (dispatch) => {
         extColor, intColor,
         bodyStyle, fuelType,
         year, make, model, zip,
-        imageUrlOne, imageUrlTwo, imageUrlThree,
-        imageUrlFour, imageUrlFive, imageUrlSix,
+        imageUrl
     } = car
+
+    console.log(car);
 
     const response = await fetch('/api/cars/newCar', {
         method: 'POST',
@@ -26,17 +27,16 @@ export const newCar = (car) => async (dispatch) => {
         },
         body: JSON.stringify({
             price, mileage,
-            extColor, intColor,
-            bodyStyle, fuelType,
+            ext_color: extColor, int_color: intColor,
+            body_style: bodyStyle, fuel_type: fuelType,
             year, make, model, zip,
-            imageUrlOne, imageUrlTwo, imageUrlThree,
-            imageUrlFour, imageUrlFive, imageUrlSix
+            imageUrl
         })
     })
 
     if(response.ok) {
         const data = await response.json()
-        dispatch(submitCar(data));
+        dispatch(submittedCar(data));
         return response;
     }
 }

@@ -19,7 +19,7 @@ class Car(db.Model):
   created_at = db.Column(db.DateTime, default=datetime.now())
   updated_at = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
 
-  car_owner = db.relationship("User", back_populates="cars")
+  user = db.relationship("User", back_populates="cars")
   bookings = db.relationship("Booking", back_populates="car", cascade="all, delete")
   images = db.relationship("Image", back_populates="car", cascade="all, delete", lazy='joined')
 

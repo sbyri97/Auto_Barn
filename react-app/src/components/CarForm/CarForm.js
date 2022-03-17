@@ -7,6 +7,7 @@ import Images from './Images';
 import Confirm from './Confirm';
 import Success from './Sucess';
 import StepFooter from './StepFooter';
+import * as carActions from '../../store/car'
 
 export default function CarForm() {
     const sessionUser = useSelector((state) => state.session.user);
@@ -23,14 +24,14 @@ export default function CarForm() {
     const [year, setYear] = useState(2022);
     const [make, setMake] = useState("");
     const [model, setModel] = useState("");
-    const [zip, setZip] = useState("");
+    const [zip, setZip] = useState(94538);
 
     const [imageUrl, setImageUrl] = useState("")
 
     const dispatch = useDispatch();
 
 
-//   if (sessionUser) {
+  if (sessionUser) {
 
     const questions = [
       "Find another home for your vehicle.",
@@ -42,6 +43,7 @@ export default function CarForm() {
 
     const nextStep = () => {
       if (step === 4) {
+
         const car = {
           price,
           mileage,
@@ -56,7 +58,9 @@ export default function CarForm() {
           imageUrl
         };
 
-      //   dispatch(spotActions.newSpot(spot));
+        console.log(car);
+
+        dispatch(carActions.newCar(car));
       }
       setStep((step) => step + 1);
     };
@@ -81,7 +85,7 @@ export default function CarForm() {
 
     const disabledStateOnStepper = [
       () => false, //0
-      () => (!year || !make || !model || !bodyStyle || !fuelType || !extColor || !intColor),
+      () => (!year|| !make || !model || !bodyStyle || !fuelType || !extColor || !intColor),
       () => (!price || !mileage || !zip),
       () => (!imageUrl),
       () => false,
@@ -127,7 +131,7 @@ export default function CarForm() {
           </div>
           <div className="firstPage content">
             <div className="primary-content">{getStepRightSide()}</div>
-            {step !== 6 && (
+            {step !== 5 && (
               <StepFooter
                 disabledStateOnStepper={disabledStateOnStepper[step]}
                 nextStep={nextStep}
@@ -138,7 +142,7 @@ export default function CarForm() {
           </div>
         </div>
       );
-    // } else {
-    //   return <h1 className="pleaseLogin"> Please Login or Signup</h1>;
-    // }
+    } else {
+      return <h1 className="pleaseLogin"> Please Login or Signup</h1>;
+    }
 };
