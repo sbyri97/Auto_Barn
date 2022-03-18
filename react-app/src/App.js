@@ -3,13 +3,15 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
+import NavBar from './components/NavBar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import CarForm from './components/CarForm/CarForm';
 import NewCarForm from './components/NewCarForm/NewCarForm';
+import AllCars from './components/AllCars/allcars';
+import HomePage from './components/Home/homePage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -43,10 +45,13 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <HomePage />
         </ProtectedRoute>
         <Route path='/newCar' exact={true} >
           <NewCarForm />
+        </Route>
+        <Route path='/allCars' exact={true} >
+          <AllCars />
         </Route>
       </Switch>
     </BrowserRouter>

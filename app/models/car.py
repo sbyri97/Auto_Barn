@@ -24,6 +24,8 @@ class Car(db.Model):
   images = db.relationship("Image", back_populates="car", cascade="all, delete, delete-orphan", lazy='joined')
 
   def to_dict(self):
+      all_images = [image.to_dict() for image in self.images]
+
       return {
         "id": self.id,
         "user_id": self.user_id,
@@ -37,4 +39,5 @@ class Car(db.Model):
         "make": self.make,
         "model": self.model,
         "zip": self.zip,
+        "images": all_images
       }

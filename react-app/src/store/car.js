@@ -1,6 +1,13 @@
 // constants
 const SUBMITTED_CAR = 'car/SUBMITTEDCAR'
+const LOAD_CARS = 'car/loadcars'
 
+const allCars = (cars) => {
+  return {
+    type: LOAD_CARS,
+    cars
+  }
+}
 
 const submittedCar = (car) => {
     return {
@@ -8,6 +15,21 @@ const submittedCar = (car) => {
         car
     };
 }
+
+export const getCars = () => async (dispatch) => {
+  const response = await fetch('/api/cars/')
+  console.log('backend resp', response);
+  if (response.ok) {
+    const data = await response.json();
+    console.log('backend data', data);
+
+    dispatch(allCars(data))
+  }
+
+  return response;
+
+}
+
 
 export const newCar = (car) => async (dispatch) => {
     const {
@@ -17,8 +39,6 @@ export const newCar = (car) => async (dispatch) => {
         year, make, model, zip,
         imageUrl
     } = car
-
-    console.log(car);
 
     const response = await fetch('/api/cars/newCar', {
         method: 'POST',
@@ -49,7 +69,12 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
       case SUBMITTED_CAR: {
         newState = { ...state };
-        newState.car = action.library;
+        newState.car = action.car;
+        return newState;
+      }
+      case LOAD_CARS: {
+        newState = { ...state };
+        newState.car = action.cars;
         return newState;
       }
     default:

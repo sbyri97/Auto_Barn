@@ -1,0 +1,19 @@
+.eachCarUl {
+    display: flex;
+    flex-direction: column;
+}
+
+.eachCarli {
+    display: flex;
+    flex-direction: column;
+}
+
+.eachCar {
+    display: flex;
+    flex-direction: column;
+}
+
+.mainCarsContainer {
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,92 @@
+.mainHomePage {
+    margin-top: 63px;
+}
+
+.home-page-one{
+    width: 100vw;
+    height: 672px;
+    background-color: black;
+}
+
+.home-page-one-logos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.logo-img{
+    height: 100px;
+    width: 150px;
+}
+
+.home-page-one-video-box {
+    width: 85%; /* Can be in percentage also. */
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}
+
+.hp-video {
+    width: 100%;
+    height: 500px;
+}
+.home-page-one-video-text {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.home-page-two {
+    width: 100vw;
+    height: 760px;
+    background-color: rgb(63, 32, 32);
+    position: relative;
+}
+
+.home-page-two-inner {
+    height: 760px;
+    display: flex;
+    flex-direction: row;
+}
+
+.home-page-two-btn-box {
+    width: 50vw;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+
+
+}
+
+.home-page-two-quote {
+    width: 50vw;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.home-page-quote-text {
+    color: white;
+}
+
+.home-page-two-car-image {
+    position: absolute;
+    top: 25%;
+    left: 40%;
+}
+
+.hp-car-img {
+    height: 300px;
+    width: 97%;
+}

@@ -16,6 +16,13 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{error}')
     return errorMessages
 
+@car_routes.route('/')
+def all_cars():
+    cars = Car.query.all()
+    cars_dicts = [car.to_dict() for car in cars]
+
+    return { "cars": cars_dicts }
+
 @car_routes.route('/newCar', methods=['POST'])
 def new_car():
     form = NewCarForm()
