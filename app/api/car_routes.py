@@ -23,6 +23,14 @@ def all_cars():
 
     return { "cars": cars_dicts }
 
+@car_routes.route('/<int:id>')
+def single_car(id):
+    cars = Car.query.get(id)
+    backend_car = cars.to_dict()
+
+
+    return { "cars": backend_car }
+
 @car_routes.route('/newCar', methods=['POST'])
 def new_car():
     form = NewCarForm()
@@ -46,3 +54,11 @@ def new_car():
         return car.to_dict()
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}
+
+
+@car_routes.route('/users/<int:id>')
+def user_cars(id):
+    cars = Car.query.filter_by(user_id=id).all()
+    cars_dicts = [car.to_dict() for car in cars]
+
+    return { "cars": cars_dicts }

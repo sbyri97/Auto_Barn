@@ -12,6 +12,8 @@ import CarForm from './components/CarForm/CarForm';
 import NewCarForm from './components/NewCarForm/NewCarForm';
 import AllCars from './components/AllCars/allcars';
 import HomePage from './components/Home/homePage';
+import EditCarForm from './components/EditCarForm/EditCarForm';
+import UserCars from './components/UserCars/UserCars';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -32,9 +34,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path='/login' exact={true}>
+        {/* <Route path='/login' exact={true}>
           <LoginForm />
-        </Route>
+        </Route> */}
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
@@ -50,8 +52,14 @@ function App() {
         <Route path='/newCar' exact={true} >
           <NewCarForm />
         </Route>
+        <Route path='/editCar/:carId' exact={true} >
+          <EditCarForm />
+        </Route>
         <Route path='/allCars' exact={true} >
           <AllCars />
+        </Route>
+        <Route path='/userCars/:userId' exact={true} >
+          <UserCars />
         </Route>
       </Switch>
     </BrowserRouter>
