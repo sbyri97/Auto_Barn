@@ -1,10 +1,13 @@
 .mainHomePage {
     margin-top: 63px;
+    overflow-y: scroll;
+    /* height: 100vh; */
 }
 
 .home-page-one{
     width: 100vw;
-    height: 672px;
+    /* height: 672px; */
+    /* height: 65vh; */
     background-color: black;
 }
 
@@ -30,6 +33,7 @@
 .hp-video {
     width: 100%;
     height: 500px;
+    object-fit: cover;
 }
 .home-page-one-video-text {
     display: flex;
@@ -45,7 +49,8 @@
 
 .home-page-two {
     width: 100vw;
-    height: 760px;
+    /* height: 760px; */
+    /* height: 45vh; */
     background-color: rgb(63, 32, 32);
     position: relative;
 }
@@ -54,6 +59,7 @@
     height: 760px;
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 
 .home-page-two-btn-box {
@@ -82,11 +88,22 @@
 
 .home-page-two-car-image {
     position: absolute;
-    top: 25%;
-    left: 40%;
+    /* z-index: -1; */
+    top: 50%;
+    bottom: 50%;
+    left: 50%;
+    right: 50%;
+    z-index: 3;
+
 }
 
 .hp-car-img {
-    height: 300px;
-    width: 97%;
+    position: absolute;
+    height: 30vh;
+    /* width: 97%; */
+    top: 50%;
+    bottom: 50%;
+    left: 50%;
+    right: 50%;
+    z-index: 3;
 }

@@ -14,6 +14,8 @@ import AllCars from './components/AllCars/allcars';
 import HomePage from './components/Home/homePage';
 import EditCarForm from './components/EditCarForm/EditCarForm';
 import UserCars from './components/UserCars/UserCars';
+import LoadingData from './components/EditCarForm/EditCarForm';
+import EachCar from './components/EachCar/EachCar';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -31,7 +33,7 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
+    <>
       <NavBar />
       <Switch>
         {/* <Route path='/login' exact={true}>
@@ -53,7 +55,7 @@ function App() {
           <NewCarForm />
         </Route>
         <Route path='/editCar/:carId' exact={true} >
-          <EditCarForm />
+          <LoadingData />
         </Route>
         <Route path='/allCars' exact={true} >
           <AllCars />
@@ -61,8 +63,11 @@ function App() {
         <Route path='/userCars/:userId' exact={true} >
           <UserCars />
         </Route>
+        <Route path='/cars/:carId' exact={true} >
+          <EachCar />
+        </Route>
       </Switch>
-    </BrowserRouter>
+    </>
   );
 }
 

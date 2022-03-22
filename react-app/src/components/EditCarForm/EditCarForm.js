@@ -7,7 +7,7 @@ import * as carActions from '../../store/car'
 import InfoTwo from './InfoTwo';
 import Images from './Images';
 
-export default function LaodingData() {
+export default function LoadingData() {
     const { carId } = useParams();
     const dispatch = useDispatch();
 
@@ -18,14 +18,15 @@ export default function LaodingData() {
         dispatch(carActions.getSingleCar(carId));
       }
     }, [sessionUser, dispatch]);
-    if (!oldCar) return null;
-    return <EditCarForm sessionUser={sessionUser} oldCar={oldCar} />;
+    if (!oldCar) return 'Please List a car to edit';
+    if (oldCar.user_id === sessionUser.id) return <EditCarForm sessionUser={sessionUser} oldCar={oldCar} carId={carId} />;
+    return "You Do Not Have Any Cars To Edit"
   }
 
 
-export function EditCarForm({ sessionUser, oldCar }) {
+export function EditCarForm({ sessionUser, oldCar, carId }) {
 
-    console.log('this is old car', oldCar);
+    console.log('this is old car', carId);
 
     const [validationErrors, setValidationErrors] = useState([]);
 
@@ -42,7 +43,7 @@ export function EditCarForm({ sessionUser, oldCar }) {
     const [model, setModel] = useState(oldCar?.model);
     const [zip, setZip] = useState(oldCar?.zip);
 
-    const [imageUrl, setImageUrl] = useState(oldCar?.images[0].url)
+    const [imageUrl, setImageUrl] = useState(oldCar?.images[0]?.url)
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -61,35 +62,37 @@ export function EditCarForm({ sessionUser, oldCar }) {
         imageUrl
     };
 
-    // const onLogin = async (e) => {
-    //     e.preventDefault();
-    //     const data = await dispatch(carActions.newCar(car));
-    //     console.log(data);
-    //     if (data && data.errors) {
-    //         setValidationErrors(data.errors)
-    //     }
 
-    //     history.push('/')
-    //   };
+    const onLogin = async (e) => {
+        e.preventDefault();
+        console.log('onlogin carId', carId);
+        const data = await dispatch(carActions.editCar(car, carId));
+        console.log(data);
+        if (data && data.errors) {
+            setValidationErrors(data.errors)
+        }
+
+        history.push(`/allCars`)
+      };
 
 
-    //   const states = {
-    //     price, setPrice,
-    //     mileage, setMileage,
-    //     extColor, setExtColor,
-    //     intColor, setIntColor,
-    //     bodyStyle, setBodyStyle,
-    //     fuelType, setFuelType,
-    //     make, setMake,
-    //     model, setModel,
-    //     year, setYear,
-    //     zip, setZip,
-    //     imageUrl, setImageUrl
-    //   };
+      const states = {
+        price, setPrice,
+        mileage, setMileage,
+        extColor, setExtColor,
+        intColor, setIntColor,
+        bodyStyle, setBodyStyle,
+        fuelType, setFuelType,
+        make, setMake,
+        model, setModel,
+        year, setYear,
+        zip, setZip,
+        imageUrl, setImageUrl
+      };
 
       return (
         <div className="mainFormPageContainer">
-            {/* <form className='formMainDiv' onSubmit={onLogin}>
+            <form className='formMainDiv' onSubmit={onLogin}>
                 <h2 className='playlist-form-title'>Continue to Host Your Vehicle.</h2>
                 <div className='errors'>
                     {validationErrors?.map((error, ind) => (
@@ -110,7 +113,7 @@ export function EditCarForm({ sessionUser, oldCar }) {
                 <div className='loginSubmitButtons'>
                 <button type='submit' className='loginSubmitBtn'>Submit Car</button>
                 </div>
-            </form> */}
+            </form>
         </div>
       );
 };

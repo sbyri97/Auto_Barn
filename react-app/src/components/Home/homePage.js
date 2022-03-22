@@ -32,6 +32,9 @@ export default function HomePage() {
                 </div>
             </div>
             <div className='home-page-two'>
+                <div className='home-page-two-car-image'>
+                 <img className='hp-car-img' src={porsche} alt='car-top-img'/>
+                </div>
                 <div className='home-page-two-inner'>
                     <div className='home-page-two-btn-box'>
                         <button className='home-page-vehicles-btn'>View Vehicles for sale</button>
@@ -39,9 +42,6 @@ export default function HomePage() {
                     <div className='home-page-two-quote'>
                         <p className='home-page-quote-text'>We drive to feel alive</p>
                     </div>
-                </div>
-                <div className='home-page-two-car-image'>
-                    <img className='hp-car-img' src={porsche} alt='car-top-img'/>
                 </div>
             </div>
         </div>

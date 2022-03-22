@@ -3,6 +3,7 @@ const SUBMITTED_CAR = 'car/SUBMITTEDCAR'
 const LOAD_CARS = 'car/loadcars'
 const LOAD_USER_CARS = 'car/loadusercars'
 const LOAD_SINGLE_CAR = 'car/loadsinglecar'
+const DELETE_CAR = 'car/deletecar'
 
 const allCars = (cars) => {
   return {
@@ -31,6 +32,15 @@ const singleCar = (car) => {
     car
   }
 }
+
+const deletedCar = (carId) => {
+  return {
+    type: DELETE_CAR,
+    carId
+  }
+}
+
+// ---------------------------------------
 
 export const getCars = () => async (dispatch) => {
   const response = await fetch('/api/cars/')
@@ -105,6 +115,47 @@ export const newCar = (car) => async (dispatch) => {
     }
 }
 
+export const editCar = (car, carId) => async (dispatch) => {
+  const {
+      price, mileage,
+      extColor, intColor,
+      bodyStyle, fuelType,
+      year, make, model, zip,
+      imageUrl
+  } = car
+
+  console.log('backedn carId', carId);
+
+  const response = await fetch(`/api/cars/editCar/${carId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          price, mileage,
+          ext_color: extColor, int_color: intColor,
+          body_style: bodyStyle, fuel_type: fuelType,
+          year, make, model, zip,
+          imageUrl
+      })
+  })
+
+  if(response.ok) {
+      const data = await response.json()
+      dispatch(submittedCar(data));
+      return response;
+  }
+}
+
+export const deleteCar = (carId) => async(dispatch) => {
+  const response = await fetch(`/api/cars/${carId}`, {
+    method: 'DELETE'
+  })
+
+  if(response.ok) {
+    dispatch(deletedCar(carId))
+  }
+}
 
 const initialState = { car: {} };
 
@@ -126,9 +177,23 @@ export default function reducer(state = initialState, action) {
         newState.car = action.car;
         return newState;
       }
+      // case LOAD_USER_CARS: {
+      //   newState = { ...state };
+      //   newState.car = action.userCars;
+      //   console.log(action.user);
+      //   return newState;
+      // }
       case LOAD_USER_CARS: {
         newState = { ...state };
-        newState.car = action.userCars;
+        action.userCars.cars.forEach((userCar) => {
+          newState.car[userCar.id] = userCar
+        })
+        return newState;
+      }
+      case DELETE_CAR: {
+        newState = { ...state, car:{...state.car}}
+        console.log('this is the newstate', newState);
+        delete newState.car[action.carId]
         return newState;
       }
     default:
