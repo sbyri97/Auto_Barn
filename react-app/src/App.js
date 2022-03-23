@@ -16,6 +16,7 @@ import EditCarForm from './components/EditCarForm/EditCarForm';
 import UserCars from './components/UserCars/UserCars';
 import LoadingData from './components/EditCarForm/EditCarForm';
 import EachCar from './components/EachCar/EachCar';
+import MyAccount from './components/MyAccount/MyAccount';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -65,6 +66,9 @@ function App() {
         </Route>
         <Route path='/cars/:carId' exact={true} >
           <EachCar />
+        </Route>
+        <Route path='/myaccount' exact={true} >
+          <MyAccount />
         </Route>
       </Switch>
     </>

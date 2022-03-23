@@ -53,7 +53,7 @@ export default function UserCars() {
                                 >Delete</button>
                             </div>
                             <div className='each-car-img-div'>
-                                <img className='each-car-img' src={car?.images[0].url} alt='each-car-img-alt'/>
+                                <img className='each-car-img' src={car?.images?.[0].url} alt='each-car-img-alt'/>
                             </div>
                             <div className='each-car-details-div'>
                                 <p className='each-car-detail'>

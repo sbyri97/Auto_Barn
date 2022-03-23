@@ -64,9 +64,6 @@ def edit_car(id):
 
     curr_user_id=current_user.id
     car = Car.query.get(id)
-    print('this is the returned car', car)
-    print('this is form fata', form.data)
-    # print('this is curr', curr_user_id)
     if form.validate_on_submit():
         car.user_id = curr_user_id
         car.price = form.data['price']
@@ -79,11 +76,10 @@ def edit_car(id):
         car.make = form.data['make']
         car.model = form.data['model']
         car.zip = form.data['zip']
+        car.images[0].url = form.data['imageUrl']
 
-        car_image = Image(car=car, url=form.data['imageUrl'])
 
         db.session.add(car)
-        db.session.add(car_image)
 
         db.session.commit()
 

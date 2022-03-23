@@ -3,8 +3,10 @@ import { useParams, useHistory, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { tryACar } from "../../store/booking";
+// import $ from 'jquery'
+// import jquery from 'jquery'
 
-export default function TryACar({carId, theCar}) {
+export default function TryACar({carId}) {
     const sessionUser = useSelector((state) => state.session.user)
     const user_id = sessionUser?.id
     const dispatch = useDispatch();
@@ -46,6 +48,15 @@ export default function TryACar({carId, theCar}) {
           history.push(`/allcars`);
       }
 
+//       let array = ["2013-03-14","2013-03-15","2013-03-16"]
+
+//         $('input').datepicker({
+//             beforeShowDay: function(date){
+//                 let string = jquery.datepicker.formatDate('yy-mm-dd', date);
+//                 return [ array.indexOf(string) == -1 ]
+//             }
+// });
+
     };
     const formatDate = (date) => {
         let anyDate = new Date(date);
@@ -71,7 +82,7 @@ export default function TryACar({carId, theCar}) {
       <div id='main-booking-div'>
             {sessionUser ? (
               <div className="try-car-container">
-                <form id="book-spot-form" onSubmit={onTry}>
+                <form id="try-a-car-form" onSubmit={onTry}>
                   <ul>
                     {errors.map((error, index) => (
                       <li key={index}>{error}</li>
@@ -98,18 +109,19 @@ export default function TryACar({carId, theCar}) {
                       value={endDate}
                       required
                       id="endDate"
+                      min={todaysDate}
                     />
                   </div>
                   <button className="try-car-btn" type="submit">
                     Reserve
                   </button>
-                  <Link className="back-home" to="/allcars">
+                  <Link className="back-to-cars-link" to="/allcars">
                     Back to All Cars
                   </Link>
                 </form>
               </div>
             ) : (
-              <h3>Please Login or Signup to view further Details</h3>
+              <h2>Please Login or Signup</h2>
             )}
           </div >
     );

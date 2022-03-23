@@ -11,7 +11,7 @@ def validate_start_date(form, field):
         raise ValidationError('Must Select A Future Date')
     elif form.data['start_date'] > form.data['end_date']:
         print('this is start_date', form.data['start_date'])
-        raise ValidationError('Start Date Cannot Be After The End Date')
+        raise ValidationError('End Date Cannot Be Before Start Date')
 
 def validate_end_date(form, field):
     start = form.data['start_date']
