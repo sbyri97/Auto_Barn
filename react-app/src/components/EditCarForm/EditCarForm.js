@@ -65,7 +65,6 @@ export function EditCarForm({ sessionUser, oldCar, carId }) {
 
     const onLogin = async (e) => {
         e.preventDefault();
-        console.log('onlogin carId', carId);
         const data = await dispatch(carActions.editCar(car, carId));
         console.log(data);
         if (data && data.errors) {

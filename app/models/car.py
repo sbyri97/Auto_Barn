@@ -20,11 +20,12 @@ class Car(db.Model):
   updated_at = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
 
   user = db.relationship("User", back_populates="cars")
-  bookings = db.relationship("Booking", back_populates="car", cascade="all, delete")
+  bookings = db.relationship("Booking", back_populates="car", cascade="all, delete, delete-orphan", lazy='joined')
   images = db.relationship("Image", back_populates="car", cascade="all, delete, delete-orphan", lazy='joined')
 
   def to_dict(self):
       all_images = [image.to_dict() for image in self.images]
+      all_bookings = [booking.to_dict() for booking in self.bookings]
 
       return {
         "id": self.id,
@@ -39,5 +40,6 @@ class Car(db.Model):
         "make": self.make,
         "model": self.model,
         "zip": self.zip,
-        "images": all_images
+        "images": all_images,
+        'bookings': all_bookings
       }

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory, useParams, Link } from 'react-router-dom';
 import * as carActions from '../../store/car'
+import BookingFormModal from '../BookACar/BookCarModal';
 import './eachcar.css'
 
 export default function EachCar() {
@@ -23,6 +24,8 @@ export default function EachCar() {
         }, 200)
     }
     }, [sessionUser, dispatch]);
+
+    const diffUser = (sessionUser?.id !== theCar?.user_id)
 
 
     if (!theCar) return 'The car you are looking for is no longer available';
@@ -47,6 +50,9 @@ export default function EachCar() {
                         <h2 className='single-car-price'>
                             Price: ${(theCar.price).toLocaleString()}
                         </h2>
+                        {sessionUser && diffUser && (
+                         <BookingFormModal carId={carId}/>
+                        )}
                     </div>
                 </div>
                 <div className='single-car-lower-box'>

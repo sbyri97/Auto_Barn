@@ -1,4 +1,3 @@
-from operator import methodcaller
 from flask import Blueprint, abort, session, request
 from flask_login import current_user
 from app.models import Car, Image, db
@@ -40,8 +39,7 @@ def new_car():
     form = NewCarForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     curr_user_id=current_user.id
-    print(form.data)
-    print('this is curr', curr_user_id)
+
     if form.validate_on_submit():
         car = Car(user_id=curr_user_id, price=form.data['price'], mileage=form.data['mileage'],
                 ext_color=form.data['ext_color'], int_color=form.data['int_color'],
