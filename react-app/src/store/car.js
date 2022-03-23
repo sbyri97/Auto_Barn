@@ -157,7 +157,7 @@ export const deleteCar = (carId) => async(dispatch) => {
   }
 }
 
-const initialState = { car: {} };
+const initialState = { car: {}, userCars: {} };
 
 export default function reducer(state = initialState, action) {
     let newState;
@@ -186,7 +186,7 @@ export default function reducer(state = initialState, action) {
       case LOAD_USER_CARS: {
         newState = { ...state };
         action.userCars.cars.forEach((userCar) => {
-          newState.car[userCar.id] = userCar
+          newState.userCars[userCar.id] = userCar
         })
         return newState;
       }

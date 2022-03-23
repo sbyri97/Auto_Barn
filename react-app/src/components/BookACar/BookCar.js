@@ -2,7 +2,9 @@ import React from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { tryACar } from "../../store/booking";
+import { tryACar, getCarBookings } from "../../store/booking";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 // import $ from 'jquery'
 // import jquery from 'jquery'
 
@@ -13,14 +15,36 @@ export default function TryACar({carId}) {
     const history = useHistory();
 
 
-
-    const [startDate, setStartDate] = useState("");
-    const [endDate, setEndDate] = useState("");
+    const [strtDate, setStrtDate] = useState();
+    const [enddDate, setEnddDate] = useState();
     const [errors, setErrors] = useState([]);
 
 
+    const formatDate = (date) => {
+        let anyDate = new Date(date);
+        let year = anyDate.getFullYear();
+
+        let month = (anyDate.getMonth() + 1).toString();
+        if (month.length < 2) {
+        month = '0' + month;
+        }
+
+        let day = anyDate.getDate().toString();
+        if (day.length < 2) {
+        day = '0' + day;
+        }
+
+        return [year, month, day].join('-');
+    }
+
+    const todaysDate = formatDate(new Date())
+
     const onTry = async (e) => {
       e.preventDefault();
+
+      const startDate = formatDate(strtDate)
+      const endDate = formatDate(enddDate)
+
 
       const car = {
         carId,
@@ -34,49 +58,26 @@ export default function TryACar({carId}) {
       if(data && data.errors) {
           setErrors(data.errors)
       }
-    //   .catch(async (err) => {
-    //     const errors = await err.json();
-    //     if (errors) {
-    //       return errors;
-    //     }
-    //   });
-    //   if (value.errors) {
-    //     return setErrors(value.errors);
-    //   }
 
       if(!data.errors) {
-          history.push(`/allcars`);
+          history.push(`/myaccount`);
       }
-
-//       let array = ["2013-03-14","2013-03-15","2013-03-16"]
-
-//         $('input').datepicker({
-//             beforeShowDay: function(date){
-//                 let string = jquery.datepicker.formatDate('yy-mm-dd', date);
-//                 return [ array.indexOf(string) == -1 ]
-//             }
-// });
-
     };
-    const formatDate = (date) => {
-        let anyDate = new Date(date);
-        let year = anyDate.getFullYear();
 
-        let month = (anyDate.getMonth() + 1).toString();
-        if (month.length < 2) {
-          month = '0' + month;
-        }
+    // useEffect(() => {
+    //     if(sessionUser) {
+    //         dispatch(getCarBookings(carId))
+    //     }
+    // }, [sessionUser, dispatch])
+    // let arr = []
+    // const bookings = useSelector((state) => state.booking?.carBookings?.carBookings)
+    // bookings?.map((booking) => arr.push(booking.start_date, booking.end_date))
+    // console.log(arr);
 
-        let day = anyDate.getDate().toString();
-        if (day.length < 2) {
-          day = '0' + day;
-        }
 
-        return [year, month, day].join('-');
-    }
-
-    const todaysDate = formatDate(new Date())
-
+    const fiveDaysLater = new Date( strtDate );
+    fiveDaysLater.setDate(fiveDaysLater.getDate() + 5);
+    console.log(strtDate, enddDate);
 
     return (
       <div id='main-booking-div'>
@@ -90,7 +91,20 @@ export default function TryACar({carId}) {
                   </ul>
                   <div className="create-date date">
                     <label htmlFor="startDate">Start Date</label>
-                    <input
+                    <DatePicker
+                    selected={strtDate}
+                    onChange={(date) => setStrtDate(date)}
+                    minDate={new Date()}
+                    // maxDate={fiveDaysLater}
+                    required/>
+                    {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}
+                    {/* <DayPicker
+                    placeholder="DD/MM/YYYY"
+                    format="DD/MM/YYYY"
+                    selected={startDate}
+                    // onDayChange={day => handleStartDate(day)}
+                    /> */}
+                    {/* <input
                       className="create-car-booking"
                       onChange={(e) => setStartDate(e.target.value)}
                       type="date"
@@ -98,11 +112,17 @@ export default function TryACar({carId}) {
                       required
                       id="startDate"
                       min={todaysDate}
-                    />
+                    /> */}
                   </div>
                   <div className="create-date date">
                     <label htmlFor="endDate">End Date</label>
-                    <input
+                    <DatePicker
+                    selected={enddDate}
+                    onChange={(date) => setEnddDate(date)}
+                    minDate={strtDate}
+                    // maxDate={fiveDaysLater}
+                    required/>
+                    {/* <input
                       className="create-car-booking"
                       onChange={(e) => setEndDate(e.target.value)}
                       type="date"
@@ -110,7 +130,7 @@ export default function TryACar({carId}) {
                       required
                       id="endDate"
                       min={todaysDate}
-                    />
+                    /> */}
                   </div>
                   <button className="try-car-btn" type="submit">
                     Reserve

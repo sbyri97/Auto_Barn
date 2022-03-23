@@ -3,6 +3,7 @@ const TRY_A_CAR = 'booking/tryacar'
 const USER_BOOKINGS = 'booking/userbookings'
 const USER_RESERVATIONS = 'booking/userreservations'
 const DELETE_BOOKING = 'booking/deletebooking'
+const LOAD_CAR_BOOKINGS = 'booking/loadcarbookings'
 
 
 
@@ -32,6 +33,13 @@ const deletedBooking = (bookingId, carId) => {
       type: DELETE_BOOKING,
       bookingId,
       carId
+    }
+  }
+
+  const carBooking = (carBookings) => {
+    return {
+      type: LOAD_CAR_BOOKINGS,
+      carBookings
     }
   }
 
@@ -124,7 +132,17 @@ export const getUserReservations = (user_id) => async (dispatch) => {
     }
 }
 
-const initialState = { myBooking: {}, booking: {}, carReservation: {} };
+export const getCarBookings = (carId) => async (dispatch) => {
+    const response = await fetch (`/api/bookings/car/${carId}`)
+
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(carBooking(data));
+        return data
+    }
+}
+
+const initialState = { myBooking: {}, booking: {}, carReservation: {}, carBookings: {} };
 
 export default function reducer(state = initialState, action) {
     let newState;
@@ -132,6 +150,14 @@ export default function reducer(state = initialState, action) {
         case TRY_A_CAR: {
             newState = {...state};
             newState.myBooking = action.booking;
+            return newState
+        }
+        case LOAD_CAR_BOOKINGS: {
+            newState = {...state};
+            newState.carBookings = action.carBookings
+            // action.carBookings.carBookings.forEach((carBooking) => {
+            //     newState.carBookings[carBooking.car_id] = carBooking
+            // })
             return newState
         }
         case USER_BOOKINGS: {

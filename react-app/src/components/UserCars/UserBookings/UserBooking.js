@@ -41,6 +41,8 @@ export default function UserBookings() {
         let options = {
             month: 'short', day: 'numeric', year: 'numeric'
         }
+        anyDate.setDate(anyDate.getDate() + 1);
+
 
         return anyDate.toLocaleDateString(undefined, options)
     }

@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { editTryACar } from "../../store/booking";
 import { getUserReservations } from "../../store/booking";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 // import $ from 'jquery'
 // import jquery from 'jquery'
 
@@ -24,9 +26,11 @@ export default function EditTryACar({carId}) {
             month = '0' + month;
         }
 
-        let day = anyDate.getDate().toString();
+        let day = (anyDate.getDate() + 1).toString();
+        console.log(day);
         if (day.length < 2) {
             day = '0' + day;
+            console.log(day);
         }
 
         return [year, month, day].join('-');
@@ -35,14 +39,23 @@ export default function EditTryACar({carId}) {
     const end_date = formatDate(bookingDeets?.end_date)
     const booking_id = bookingDeets?.id
 
+    const startDateState = new Date(start_date);
+    startDateState.setDate(startDateState.getDate() + 1)
 
-    const [startDate, setStartDate] = useState(start_date);
-    const [endDate, setEndDate] = useState(end_date);
+    const endDateState = new Date(end_date);
+    endDateState.setDate(endDateState.getDate() + 1)
+
+
+    const [strtDate, setStrtDate] = useState(startDateState);
+    const [enddDate, setEnddDate] = useState(endDateState);
     const [errors, setErrors] = useState([]);
 
 
     const onTry = async (e) => {
       e.preventDefault();
+
+      const startDate = formatDate(strtDate)
+      const endDate = formatDate(enddDate)
 
       const booking = {
         booking_id,
@@ -66,6 +79,9 @@ export default function EditTryACar({carId}) {
 
     const todaysDate = formatDate(new Date())
 
+    const fiveDaysLater = new Date( strtDate );
+    fiveDaysLater.setDate(fiveDaysLater.getDate() + 5);
+
 
     return (
       <div id='main-booking-div'>
@@ -79,7 +95,12 @@ export default function EditTryACar({carId}) {
                   </ul>
                   <div className="create-date date">
                     <label htmlFor="startDate">Start Date</label>
-                    <input
+                    <DatePicker
+                    selected={strtDate}
+                    onChange={(date) => setStrtDate(date)}
+                    minDate={strtDate}
+                    required/>
+                    {/* <input
                       className="create-car-booking"
                       onChange={(e) => setStartDate(e.target.value)}
                       type="date"
@@ -87,11 +108,17 @@ export default function EditTryACar({carId}) {
                       required
                       id="startDate"
                       min={todaysDate}
-                    />
+                    /> */}
                   </div>
                   <div className="create-date date">
                     <label htmlFor="endDate">End Date</label>
-                    <input
+                    <DatePicker
+                    selected={enddDate}
+                    onChange={(date) => setEnddDate(date)}
+                    minDate={strtDate}
+                    // maxDate={fiveDaysLater}
+                    required/>
+                    {/* <input
                       className="create-car-booking"
                       onChange={(e) => setEndDate(e.target.value)}
                       type="date"
@@ -99,7 +126,7 @@ export default function EditTryACar({carId}) {
                       required
                       id="endDate"
                       min={todaysDate}
-                    />
+                    /> */}
                   </div>
                   <button className="try-car-btn" type="submit">
                     Edit Reservation

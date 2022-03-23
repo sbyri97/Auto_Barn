@@ -19,7 +19,8 @@ export default function UserCars() {
         }
     }, [sessionUser, dispatch])
 
-    const cars = useSelector((state) => state.car.car)
+    const cars = useSelector((state) => state.car.userCars)
+    console.log('why is this loading when back arrow', cars);
     const  userCarsArray = Object.values(cars)
 
 
