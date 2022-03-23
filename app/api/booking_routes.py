@@ -120,3 +120,16 @@ def get_user_reservations(id):
     booking_details = [booking_details.to_dict() for booking_details in user_bookings]
 
     return {"reservations" : booking_details}
+
+@booking_routes.route('/<int:id>', methods=['DELETE'])
+def delete_car(id):
+    booking = Booking.query.get(id)
+
+    if booking is None:
+        abort(404)
+
+    db.session.delete(booking)
+    db.session.commit()
+
+
+    return { id: booking.id }

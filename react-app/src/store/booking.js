@@ -2,6 +2,8 @@
 const TRY_A_CAR = 'booking/tryacar'
 const USER_BOOKINGS = 'booking/userbookings'
 const USER_RESERVATIONS = 'booking/userreservations'
+const DELETE_BOOKING = 'booking/deletebooking'
+
 
 
 const bookCar = (booking) => {
@@ -24,6 +26,16 @@ const userReservations = (userReservations) => {
         userReservations
     }
 }
+
+const deletedBooking = (bookingId, carId) => {
+    return {
+      type: DELETE_BOOKING,
+      bookingId,
+      carId
+    }
+  }
+
+  // ---------------------------------------
 
 export const tryACar = (car) => async (dispatch) => {
     const {
@@ -79,6 +91,17 @@ export const editTryACar = (booking) => async (dispatch) => {
     }
 }
 
+export const deleteTryACar = (booking_id, car_id) => async (dispatch) => {
+
+    const response = await fetch(`/api/bookings/${booking_id}`, {
+        method: 'DELETE',
+    })
+
+    if(response.ok) {
+        dispatch(deletedBooking(booking_id, car_id))
+    }
+}
+
 export const getUserBookings = (user_id) => async (dispatch) => {
     const response = await fetch (`/api/bookings/user/${user_id}`)
 
@@ -123,6 +146,12 @@ export default function reducer(state = initialState, action) {
             action.userReservations.reservations.forEach((userReservation) => {
                 newState.carReservation[userReservation.car_id] = userReservation
             })
+            return newState
+        }
+        case DELETE_BOOKING: {
+            newState = {...state, booking: {...state.booking}, carReservation:{...state.carReservation}};
+            delete newState.booking[action.carId]
+            delete newState.carReservation[action.bookingId]
             return newState
         }
     default:

@@ -59,17 +59,8 @@ export default function EditTryACar({carId}) {
       }
 
       if(!data.errors) {
-          history.push(`/allcars`);
+          history.push(`/myaccount`);
       }
-
-//       let array = ["2013-03-14","2013-03-15","2013-03-16"]
-
-//         $('input').datepicker({
-//             beforeShowDay: function(date){
-//                 let string = jquery.datepicker.formatDate('yy-mm-dd', date);
-//                 return [ array.indexOf(string) == -1 ]
-//             }
-// });
 
     };
 

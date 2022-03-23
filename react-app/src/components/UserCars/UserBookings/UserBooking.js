@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserBookings, getUserReservations } from '../../../store/booking'
+import { getUserBookings, getUserReservations, deleteTryACar } from '../../../store/booking'
 
 import { Link, useHistory } from "react-router-dom";
 import './userbookings.css'
@@ -16,21 +16,25 @@ export default function UserBookings() {
     useEffect(() => {
         if(sessionUser) {
             dispatch(getUserBookings(sessionUser.id))
+            dispatch(getUserReservations(sessionUser.id))
             setTimeout(() => {
                 setIsLoading(false);
             }, 200)
         }
     }, [sessionUser, dispatch])
 
-    useEffect(() => {
-        if(sessionUser) {
-            dispatch(getUserReservations(sessionUser.id))
-        }
-    }, [sessionUser, dispatch])
+    // useEffect(() => {
+    //     if(sessionUser) {
+    //         dispatch(getUserReservations(sessionUser.id))
+    //     }
+    // }, [sessionUser, dispatch])
 
     const cars = useSelector((state) => state.booking.booking)
     const  userCarsArray = Object.values(cars)
-    console.log(userCarsArray);
+
+    const bookingDeets = useSelector((state) => state?.booking?.carReservation)
+
+
 
     const formatStrDate = (date) => {
         let anyDate = new Date(date);
@@ -38,7 +42,7 @@ export default function UserBookings() {
             month: 'short', day: 'numeric', year: 'numeric'
         }
 
-        return anyDate.toLocaleDateString('en-Us', options)
+        return anyDate.toLocaleDateString(undefined, options)
     }
 
 
@@ -54,11 +58,11 @@ export default function UserBookings() {
                             <p className='booked-car-zip-txt'>
                                 {car?.zip}
                             </p>
-                            <EditBookingFormModal carId={car?.id}/>
                             <button className="ed-del-button"
                             onClick={(e) => {
                                 e.preventDefault()
-                                // dispatch(carActions.deleteCar(car.id))
+                                // console.log(bookingDeets[car.id].car_id)
+                                dispatch(deleteTryACar((bookingDeets[car.id].id), car.id))
                             }}
                             >Delete Booking</button>
                         </div>

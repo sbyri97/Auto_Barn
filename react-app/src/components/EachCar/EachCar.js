@@ -4,7 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory, useParams, Link } from 'react-router-dom';
 import * as carActions from '../../store/car'
 import BookingFormModal from '../BookACar/BookCarModal';
+import { getUserReservations } from '../../store/booking';
 import './eachcar.css'
+import EditBookingFormModal from '../BookACar/EditBookingModal';
 
 export default function EachCar() {
     const { carId } = useParams();
@@ -12,18 +14,29 @@ export default function EachCar() {
     const history = useHistory()
 
     const sessionUser = useSelector((state) => state.session.user);
+
     const theCar = useSelector((state) => state.car?.car?.cars)
+    const bookingDeets = useSelector((state) => state?.booking?.carReservation[carId])
+
+    const userBooked = bookingDeets
+
     const [isloading, setIsLoading] = useState(true);
 
 
     useEffect(() => {
       if(sessionUser) {
         dispatch(carActions.getSingleCar(carId));
+        dispatch(getUserReservations(sessionUser.id))
         setTimeout(() => {
             setIsLoading(false);
         }, 200)
     }
     }, [sessionUser, dispatch]);
+
+    // useEffect(() => {
+    //     if(sessionUser) {
+    //     }
+    // }, [sessionUser, dispatch])
 
     const diffUser = (sessionUser?.id !== theCar?.user_id)
 
@@ -50,9 +63,12 @@ export default function EachCar() {
                         <h2 className='single-car-price'>
                             Price: ${(theCar.price).toLocaleString()}
                         </h2>
-                        {sessionUser && diffUser && (
-                         <BookingFormModal carId={carId}/>
-                        )}
+                        {(userBooked) ?
+                        <EditBookingFormModal carId={carId}/>
+                        :
+                        (sessionUser && diffUser) && (
+                        <BookingFormModal carId={carId}/>)
+                        }
                     </div>
                 </div>
                 <div className='single-car-lower-box'>
