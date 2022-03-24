@@ -11,7 +11,7 @@ function EditBookingFormModal({carId}) {
 
     return (
       <div className='booking-main-div'>
-        <button className='edit-me-btn' onClick={() => setShowModal(true)}>Edit Booking</button>
+        <button className='ednButton' onClick={() => setShowModal(true)}>Edit Booking</button>
         {showModal && (
           <Modal onClose={() => {
             setShowModal(false)

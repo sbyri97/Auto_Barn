@@ -18,7 +18,8 @@ export default function EachCar() {
     const theCar = useSelector((state) => state.car?.car?.cars)
     const bookingDeets = useSelector((state) => state?.booking?.carReservation[carId])
 
-    const userBooked = bookingDeets
+    const userBooked = bookingDeets?.user_id
+    console.log(userBooked);
 
     const [isloading, setIsLoading] = useState(true);
 
@@ -63,7 +64,7 @@ export default function EachCar() {
                         <h2 className='single-car-price'>
                             Price: ${(theCar.price).toLocaleString()}
                         </h2>
-                        {(userBooked) ?
+                        {(userBooked === sessionUser.id) ?
                         <EditBookingFormModal carId={carId}/>
                         :
                         (sessionUser && diffUser) && (

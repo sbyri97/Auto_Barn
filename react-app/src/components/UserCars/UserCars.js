@@ -25,66 +25,69 @@ export default function UserCars() {
         }
     }, [sessionUser, dispatch])
 
+    console.log(userCarsArray);
+
     // console.log('why is this loading when back arrow', cars);
     // const  userCarsArray = Object.values(cars)
 
 
 
     return (
-    <div className='mainCarsContainer'>
-        {isloading ? (
-            <h2 className="loading">Your Cars Are Loading</h2>
-        ) :
-            <div className='all-cars-container-title'>
-                ALL OF YOUR VEHICLES
-                <div className='all-cars-main-grid'>
-                    {userCarsArray?.map((car, i) => (
-                        <div className='each-car-outerbox' key={`${i}`}>
-                            <div className='each-car-zip'>
-                                <p className='each-car-zip-txt'>
-                                    {car.zip}
-                                </p>
-                                {/* <button className="ed-del-button"
-                                onClick={(e) => {
-                                    e.preventDefault()
-                                    let path = `/editCar/${car.id}`
-                                    history.push(path)
-                                }}
-                                >Edit
-                                </button> */}
-                                <EditCarFormModal oldCar={car} carId={car.id}/>
-                                <button className="ed-del-button"
-                                onClick={(e) => {
-                                    e.preventDefault()
-                                    dispatch(carActions.deleteCar(car.id))
-                                }}
-                                >Delete</button>
-                            </div>
-                            <div className='each-car-img-div'>
-                                <img className='each-car-img' src={car?.images?.[0].url} alt='each-car-img-alt'/>
-                            </div>
-                            <div className='each-car-details-div'>
-                                <p className='each-car-detail'>
-                                   {car.year} {car.make} {car.model}
-                                </p>
-                                <p className='each-car-detail'>
-                                    ${car.price}
-                                </p>
-                                <p className='each-car-detail'>
-                                    {car.mileage}
-                                </p>
-                                <p className='each-car-detail'>
-                                    {car.ext_color}
-                                </p>
-                                <Link to={`/cars/${car.id}`} className='vehicle-detail-view-link'>
-                                    View Vehicle Details
-                                </Link>
+        <div>
+            {(userCarsArray.length !== 0) ? (
+                <div className='mainCarsContainer'>
+                    {isloading ? (
+                        <h2 className="loading">Your Cars Are Loading</h2>
+                    ) :
+                        <div className='all-cars-container-title'>
+                            ALL OF YOUR VEHICLES
+                            <div className='all-cars-main-grid'>
+                                {userCarsArray?.map((car, i) => (
+                                    ((sessionUser?.id === car?.user_id) ?
+                                    <div className='each-car-outerbox' key={`${i}`}>
+                                        <div className='each-car-zip'>
+                                            <p className='each-car-zip-txt'>
+                                                {car.zip}
+                                            </p>
+                                            <EditCarFormModal oldCar={car} carId={car.id}/>
+                                            <button className="ed-del-button"
+                                            onClick={(e) => {
+                                                e.preventDefault()
+                                                dispatch(carActions.deleteCar(car.id, car.bookings))
+                                            }}
+                                            >Delete</button>
+                                        </div>
+                                        <div className='each-car-img-div'>
+                                            <img className='each-car-img' src={car?.images?.[0].url} alt='each-car-img-alt'/>
+                                        </div>
+                                        <div className='each-car-details-div'>
+                                            <p className='each-car-detail'>
+                                            {car.year} {car.make} {car.model}
+                                            </p>
+                                            <p className='each-car-detail'>
+                                                ${car.price}
+                                            </p>
+                                            <p className='each-car-detail'>
+                                                {car.mileage}
+                                            </p>
+                                            <p className='each-car-detail'>
+                                                {car.ext_color}
+                                            </p>
+                                            <Link to={`/cars/${car.id}`} className='vehicle-detail-view-link'>
+                                                View Vehicle Details
+                                            </Link>
+                                        </div>
+                                    </div>
+                                    :
+                                    null)
+                                ))}
                             </div>
                         </div>
-                    ))}
+                    }
                 </div>
-            </div>
-        }
-    </div>
+            ):
+            <div> YOU DO NOT HAVE ANY CARS </div>
+            }
+        </div>
     )
 }

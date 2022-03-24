@@ -24,7 +24,7 @@ export default function NewCarForm() {
     const [year, setYear] = useState();
     const [make, setMake] = useState("");
     const [model, setModel] = useState("");
-    const [zip, setZip] = useState(94538);
+    const [zip, setZip] = useState("");
 
     const [imageUrl, setImageUrl] = useState("")
 

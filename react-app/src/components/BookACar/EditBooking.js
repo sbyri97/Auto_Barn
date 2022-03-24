@@ -40,10 +40,10 @@ export default function EditTryACar({carId}) {
     const booking_id = bookingDeets?.id
 
     const startDateState = new Date(start_date);
-    startDateState.setDate(startDateState.getDate() + 1)
+    // startDateState.setDate(startDateState.getDate() + 1)
 
     const endDateState = new Date(end_date);
-    endDateState.setDate(endDateState.getDate() + 1)
+    // endDateState.setDate(endDateState.getDate() + 1)
 
 
     const [strtDate, setStrtDate] = useState(startDateState);
@@ -114,6 +114,7 @@ export default function EditTryACar({carId}) {
                     <label htmlFor="endDate">End Date</label>
                     <DatePicker
                     selected={enddDate}
+                    value={enddDate}
                     onChange={(date) => setEnddDate(date)}
                     minDate={strtDate}
                     // maxDate={fiveDaysLater}

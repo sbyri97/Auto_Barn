@@ -14,19 +14,21 @@ export default function InfoTwo({ states }) {
         <input
             className="priceValue"
             type="number"
+            min="0"
             placeholder="$(Enter Car Value)"
             value={price}
             onChange={(e) => {
-              setPrice(parseInt(e.target.value));
+              setPrice(e.target.value);
             }}
           />
         <input
             className="mileageValue"
             type="number"
+            min="0"
             value={mileage}
             placeholder="Enter Car's Mileage"
             onChange={(e) => {
-              setMileage(parseInt(e.target.value));
+              setMileage(e.target.value);
             }}
           />
         <input
@@ -34,7 +36,7 @@ export default function InfoTwo({ states }) {
             type="number"
             value={zip}
             onChange={(e) => {
-              setZip(parseInt(e.target.value));
+              setZip(e.target.value);
             }}
           />
       </div>

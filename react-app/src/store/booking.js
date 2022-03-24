@@ -4,6 +4,7 @@ const USER_BOOKINGS = 'booking/userbookings'
 const USER_RESERVATIONS = 'booking/userreservations'
 const DELETE_BOOKING = 'booking/deletebooking'
 const LOAD_CAR_BOOKINGS = 'booking/loadcarbookings'
+const CLEAR_BOOKING = 'booking/clearbooking'
 
 
 
@@ -28,7 +29,7 @@ const userReservations = (userReservations) => {
     }
 }
 
-const deletedBooking = (bookingId, carId) => {
+export const deletedBooking = (bookingId, carId) => {
     return {
       type: DELETE_BOOKING,
       bookingId,
@@ -36,14 +37,26 @@ const deletedBooking = (bookingId, carId) => {
     }
   }
 
-  const carBooking = (carBookings) => {
-    return {
-      type: LOAD_CAR_BOOKINGS,
-      carBookings
-    }
+//   const carBooking = (carBookings) => {
+//     return {
+//       type: LOAD_CAR_BOOKINGS,
+//       carBookings
+//     }
+//   }
+
+  const clearBooking = () => {
+      return {
+          type: CLEAR_BOOKING
+      }
   }
 
+
   // ---------------------------------------
+
+  export const clearBookingState = () => (dispatch) => {
+      dispatch(clearBooking())
+      return
+  }
 
 export const tryACar = (car) => async (dispatch) => {
     const {
@@ -132,17 +145,17 @@ export const getUserReservations = (user_id) => async (dispatch) => {
     }
 }
 
-export const getCarBookings = (carId) => async (dispatch) => {
-    const response = await fetch (`/api/bookings/car/${carId}`)
+// export const getCarBookings = (carId) => async (dispatch) => {
+//     const response = await fetch (`/api/bookings/car/${carId}`)
 
-    if (response.ok) {
-        const data = await response.json()
-        dispatch(carBooking(data));
-        return data
-    }
-}
+//     if (response.ok) {
+//         const data = await response.json()
+//         dispatch(carBooking(data));
+//         return data
+//     }
+// }
 
-const initialState = { myBooking: {}, booking: {}, carReservation: {}, carBookings: {} };
+const initialState = { myBooking: {}, booking: {}, carReservation: {} };
 
 export default function reducer(state = initialState, action) {
     let newState;
@@ -152,32 +165,36 @@ export default function reducer(state = initialState, action) {
             newState.myBooking = action.booking;
             return newState
         }
-        case LOAD_CAR_BOOKINGS: {
-            newState = {...state};
-            newState.carBookings = action.carBookings
-            // action.carBookings.carBookings.forEach((carBooking) => {
-            //     newState.carBookings[carBooking.car_id] = carBooking
-            // })
-            return newState
-        }
+        // case LOAD_CAR_BOOKINGS: {
+        //     newState = {...state};
+        //     newState.carBookings = action.carBookings
+        //     // action.carBookings.carBookings.forEach((carBooking) => {
+        //     //     newState.carBookings[carBooking.car_id] = carBooking
+        //     // })
+        //     return newState
+        // }
         case USER_BOOKINGS: {
-            newState = {...state};
+            newState = initialState;
             action.userBookings.carBookings.forEach((userBooking) => {
                 newState.booking[userBooking.id] = userBooking
             })
             return newState
         }
         case USER_RESERVATIONS: {
-            newState = {...state};
+            newState = initialState;
             action.userReservations.reservations.forEach((userReservation) => {
                 newState.carReservation[userReservation.car_id] = userReservation
             })
             return newState
         }
         case DELETE_BOOKING: {
-            newState = {...state, booking: {...state.booking}, carReservation:{...state.carReservation}};
+            newState = {...state };
             delete newState.booking[action.carId]
             delete newState.carReservation[action.bookingId]
+            return newState
+        }
+        case CLEAR_BOOKING: {
+            newState = {myBooking: {}, booking: {}, carReservation: {}}
             return newState
         }
     default:

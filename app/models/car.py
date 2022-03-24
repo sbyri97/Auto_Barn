@@ -7,8 +7,8 @@ class Car(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-  price = db.Column(db.Integer, nullable=False, default=0)
-  mileage = db.Column(db.Integer, nullable=False, default=0)
+  price = db.Column(db.String(50), nullable=False, default=0)
+  mileage = db.Column(db.String(50), nullable=False, default=0)
   ext_color = db.Column(db.String(100), nullable=False)
   int_color = db.Column(db.String(100), nullable=False)
   body_style = db.Column(db.String(100), nullable=False)
@@ -21,7 +21,7 @@ class Car(db.Model):
   updated_at = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
 
   user = db.relationship("User", back_populates="cars")
-  bookings = db.relationship("Booking", back_populates="car", cascade="all, delete, delete-orphan", lazy='joined')
+  bookings = db.relationship("Booking", back_populates="car", cascade="all, delete")
   images = db.relationship("Image", back_populates="car", cascade="all, delete, delete-orphan", lazy='joined')
 
   def to_dict(self):

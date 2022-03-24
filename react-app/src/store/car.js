@@ -1,9 +1,13 @@
+import { deletedBooking } from "./booking"
 // constants
 const SUBMITTED_CAR = 'car/SUBMITTEDCAR'
 const LOAD_CARS = 'car/loadcars'
 const LOAD_USER_CARS = 'car/loadusercars'
 const LOAD_SINGLE_CAR = 'car/loadsinglecar'
 const DELETE_CAR = 'car/deletecar'
+const CLEAR_CAR = 'car/clearcar'
+
+
 
 const allCars = (cars) => {
   return {
@@ -49,9 +53,9 @@ export const getCars = () => async (dispatch) => {
     const data = await response.json();
 
     dispatch(allCars(data))
+    return data;
   }
 
-  return response;
 
 }
 
@@ -78,6 +82,10 @@ export const getSingleCar = (carId) => async (dispatch) => {
 
   return response
 }
+
+export const clearCarState = () => ({
+  type: CLEAR_CAR
+})
 
 // export const editCar = (carId) => async (dispatch) => {
 //   const response = await fetch(`/api/cars/users/${userId}`)
@@ -153,13 +161,16 @@ export const editCar = (car, carId) => async (dispatch) => {
   }
 }
 
-export const deleteCar = (carId) => async(dispatch) => {
+export const deleteCar = (carId, bookings) => async(dispatch) => {
   const response = await fetch(`/api/cars/${carId}`, {
     method: 'DELETE'
   })
 
   if(response.ok) {
     dispatch(deletedCar(carId))
+    bookings.forEach((booking) => {
+      dispatch(deletedBooking(booking.id, carId))
+    })
   }
 }
 
@@ -171,14 +182,15 @@ export default function reducer(state = initialState, action) {
       case SUBMITTED_CAR: {
         newState = { ...state };
         newState.car = action.car;
-        console.log(action.car.id);
-        newState.userCars[action.car.id] = action.car;
-        console.log(newState.userCars[action.car.id]);
+        newState.userCars[action.car.id] = action.car;;
         return newState;
       }
       case LOAD_CARS: {
-        newState = { ...state };
-        newState.car = action.cars;
+        newState = initialState;
+        action.cars.cars.forEach((car) => {
+          newState.car[car.id] = car
+        })
+        // console.log(action);
         return newState;
       }
       case LOAD_SINGLE_CAR: {
@@ -204,6 +216,10 @@ export default function reducer(state = initialState, action) {
         delete newState.car[action.carId]
         delete newState.userCars[action.carId]
         return newState;
+      }
+      case CLEAR_CAR: {
+        newState = {car: {}, userCars: {} }
+        return newState
       }
     default:
       return state;

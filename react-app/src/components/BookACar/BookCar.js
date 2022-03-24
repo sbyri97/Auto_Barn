@@ -64,15 +64,6 @@ export default function TryACar({carId}) {
       }
     };
 
-    // useEffect(() => {
-    //     if(sessionUser) {
-    //         dispatch(getCarBookings(carId))
-    //     }
-    // }, [sessionUser, dispatch])
-    // let arr = []
-    // const bookings = useSelector((state) => state.booking?.carBookings?.carBookings)
-    // bookings?.map((booking) => arr.push(booking.start_date, booking.end_date))
-    // console.log(arr);
 
 
     const fiveDaysLater = new Date( strtDate );

@@ -10,6 +10,8 @@ export default function AllCars() {
     const dispatch = useDispatch()
     const history = useHistory()
 
+    const cars = useSelector((state) => Object.values(state.car?.car))
+
     useEffect(() => {
         if(sessionUser) {
             dispatch(carActions.getCars());
@@ -19,7 +21,6 @@ export default function AllCars() {
         }
     }, [sessionUser, dispatch])
 
-    const cars = useSelector((state) => state.car?.car?.cars)
 
     return (
         <div className='mainCarsContainer'>
@@ -37,7 +38,7 @@ export default function AllCars() {
                                     </p>
                                 </div>
                                 <div className='each-car-img-div'>
-                                    <img className='each-car-img' src={car.images[0].url} alt='each-car-img-alt'/>
+                                    <img className='each-car-img' src={car.images?.[0].url} alt='each-car-img-alt'/>
                                 </div>
                                 <div className='each-car-details-div'>
                                     <p className='each-car-detail'>

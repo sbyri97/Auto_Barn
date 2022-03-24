@@ -99,7 +99,7 @@ def edit_booking(id):
 
 @booking_routes.route('/user/<int:id>')
 def get_user_bookings(id):
-    user_bookings = Booking.query.filter_by(user_id=id).all()
+    user_bookings = Booking.query.filter(Booking.user_id == id).all()
     booking_details = [booking_details.to_dict() for booking_details in user_bookings]
 
     cars = []
@@ -115,7 +115,7 @@ def get_user_bookings(id):
 
 @booking_routes.route('/user/reservations/<int:id>')
 def get_user_reservations(id):
-    user_bookings = Booking.query.filter_by(user_id=id).all()
+    user_bookings = Booking.query.filter(Booking.user_id == id).all()
     booking_details = [booking_details.to_dict() for booking_details in user_bookings]
 
     return {"reservations" : booking_details}

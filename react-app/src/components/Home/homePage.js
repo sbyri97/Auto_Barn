@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import './homePage.css'
 import porsche from '../../images/porsche.png'
+import { useHistory } from 'react-router-dom';
 
 export default function HomePage() {
+    const history = useHistory()
+
+    const onClick = (e) => {
+        e.preventDefault()
+        history.push('/allcars')
+    }
 
     return (
         <div className='mainHomePage'>
@@ -37,7 +44,7 @@ export default function HomePage() {
                 </div>
                 <div className='home-page-two-inner'>
                     <div className='home-page-two-btn-box'>
-                        <button className='home-page-vehicles-btn'>View Vehicles for sale</button>
+                        <button className='home-page-vehicles-btn' onClick={onClick}>View Vehicles for sale</button>
                     </div>
                     <div className='home-page-two-quote'>
                         <p className='home-page-quote-text'>We drive to feel alive</p>
