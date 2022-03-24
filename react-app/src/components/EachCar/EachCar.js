@@ -58,7 +58,7 @@ export default function EachCar() {
                     </div>
                     <div className='single-car-upper-info'>
                         <h2 className='single-car-title'>
-                            {theCar.make} {theCar.model}
+                            {theCar.year} {theCar.make} {theCar.model}
                         </h2>
                         <h2 className='single-car-price'>
                             Price: ${(theCar.price).toLocaleString()}

@@ -81,11 +81,10 @@ def edit_booking(id):
 
             # SS <= EE  & E2 < SE
 
-            # if((selected_start_date <= curr_booking_end_dates) and (curr_booking_start_dates < selected_end_date)):
-            #     errMessages = ['Car is already Booked for those dates']
-            #     return {'errors': errMessages}
+            if((selected_start_date <= curr_booking_end_dates) and (curr_booking_start_dates < selected_end_date)):
+                errMessages = ['For Insurance Purposes You may not select new dates within your exisitng booking, please select new range of dates']
+                return {'errors': errMessages}
 
-        # booking = Booking(user_id=curr_user_id, car_id=id, start_date=form.data['start_date'], end_date=form.data['end_date'])
         booking.user_id = curr_user_id
         booking.car_id = car_id
         booking.start_date = form.data['start_date']
@@ -133,3 +132,10 @@ def delete_car(id):
 
 
     return { id: booking.id }
+
+@booking_routes.route('/car/<int:id>')
+def get_car_bookings(id):
+    existing_bookings = Booking.query.filter_by(car_id=id).all()
+    curr_bookings = [existing_booking.to_dict() for existing_booking in existing_bookings]
+
+    return {"carBookings" : curr_bookings}

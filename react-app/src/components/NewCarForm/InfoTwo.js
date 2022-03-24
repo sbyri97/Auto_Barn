@@ -14,6 +14,7 @@ export default function InfoTwo({ states }) {
         <input
             className="priceValue"
             type="number"
+            placeholder="$(Enter Car Value)"
             value={price}
             onChange={(e) => {
               setPrice(parseInt(e.target.value));
@@ -23,6 +24,7 @@ export default function InfoTwo({ states }) {
             className="mileageValue"
             type="number"
             value={mileage}
+            placeholder="Enter Car's Mileage"
             onChange={(e) => {
               setMileage(parseInt(e.target.value));
             }}

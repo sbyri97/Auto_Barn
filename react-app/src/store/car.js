@@ -111,7 +111,7 @@ export const newCar = (car) => async (dispatch) => {
     if(response.ok) {
         const data = await response.json()
         dispatch(submittedCar(data));
-        return response;
+        return data;
     }
 }
 
@@ -143,7 +143,10 @@ export const editCar = (car, carId) => async (dispatch) => {
   if(response.ok) {
       const data = await response.json()
       dispatch(submittedCar(data));
-      return response;
+      return data;
+  } else {
+    const errors = await response.json()
+    return errors
   }
 }
 
@@ -165,6 +168,9 @@ export default function reducer(state = initialState, action) {
       case SUBMITTED_CAR: {
         newState = { ...state };
         newState.car = action.car;
+        console.log(action.car.id);
+        newState.userCars[action.car.id] = action.car;
+        console.log(newState.userCars[action.car.id]);
         return newState;
       }
       case LOAD_CARS: {
@@ -192,7 +198,6 @@ export default function reducer(state = initialState, action) {
       }
       case DELETE_CAR: {
         newState = { ...state, car:{...state.car}}
-        console.log('this is the newstate', newState);
         delete newState.car[action.carId]
         return newState;
       }

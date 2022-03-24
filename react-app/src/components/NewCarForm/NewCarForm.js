@@ -5,6 +5,7 @@ import InfoOne from './InfoOne';
 import * as carActions from '../../store/car'
 import InfoTwo from './InfoTwo';
 import Images from './Images';
+import './newcarform.css'
 
 
 export default function NewCarForm() {
@@ -12,15 +13,15 @@ export default function NewCarForm() {
     const [validationErrors, setValidationErrors] = useState([]);
 
 
-    const [price, setPrice] = useState(0);
-    const [mileage, setMileage] = useState(0);
+    const [price, setPrice] = useState();
+    const [mileage, setMileage] = useState();
 
     const [extColor, setExtColor] = useState("");
     const [intColor, setIntColor] = useState("");
     const [bodyStyle, setBodyStyle] = useState("");
     const [fuelType, setFuelType] = useState("");
 
-    const [year, setYear] = useState(2022);
+    const [year, setYear] = useState();
     const [make, setMake] = useState("");
     const [model, setModel] = useState("");
     const [zip, setZip] = useState(94538);
@@ -47,12 +48,12 @@ export default function NewCarForm() {
     const onLogin = async (e) => {
         e.preventDefault();
         const data = await dispatch(carActions.newCar(car));
-        console.log(data);
         if (data && data.errors) {
             setValidationErrors(data.errors)
         }
-
-        history.push('/')
+        if (!data.errors) {
+            history.push('/myaccount')
+        }
       };
 
 
@@ -73,7 +74,7 @@ export default function NewCarForm() {
       return (
         <div className="mainFormPageContainer">
             <form className='formMainDiv' onSubmit={onLogin}>
-                <h2 className='playlist-form-title'>Continue to Host Your Vehicle.</h2>
+                <h2 className='playlist-form-title'>Sell Your Vehicle</h2>
                 <div className='errors'>
                     {validationErrors?.map((error, ind) => (
                         <div key={ind}>{error}</div>

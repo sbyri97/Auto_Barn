@@ -14,7 +14,7 @@ import AllCars from './components/AllCars/allcars';
 import HomePage from './components/Home/homePage';
 import EditCarForm from './components/EditCarForm/EditCarForm';
 import UserCars from './components/UserCars/UserCars';
-import LoadingData from './components/EditCarForm/EditCarForm';
+import LoadingData from './components/EditCarForm/LoadingData';
 import EachCar from './components/EachCar/EachCar';
 import MyAccount from './components/MyAccount/MyAccount';
 
@@ -55,9 +55,9 @@ function App() {
         <Route path='/newCar' exact={true} >
           <NewCarForm />
         </Route>
-        <Route path='/editCar/:carId' exact={true} >
+        {/* <Route path='/editCar/:carId' exact={true} >
           <LoadingData />
-        </Route>
+        </Route> */}
         <Route path='/allCars' exact={true} >
           <AllCars />
         </Route>

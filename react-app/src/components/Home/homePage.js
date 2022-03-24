@@ -9,16 +9,16 @@ export default function HomePage() {
             <div className='home-page-one'>
                 <div className='home-page-one-logos'>
                     <div className='logo'>
-                        <img className="logo-img" src={'https://www.carlogos.org/logo/BMW-M-logo-1920x1080.png'} alt='bmwlogo'/>
+                        <img className="logo-img" src={'https://1000logos.net/wp-content/uploads/2020/03/AMG-Logo.jpg'} alt='bmwlogo'/>
                     </div>
                     <div className='logo'>
                         <img className="logo-img" src={'https://www.carlogos.org/logo/BMW-M-logo-1920x1080.png'} alt='bmwlogo'/>
                     </div>
                     <div className='logo'>
-                        <img className="logo-img" src={'https://www.carlogos.org/logo/BMW-M-logo-1920x1080.png'} alt='bmwlogo'/>
+                        <img className="logo-img" src={'https://www.gran-turismo.com/gtsport/decal/7349968051048022528_1.png'} alt='bmwlogo'/>
                     </div>
                     <div className='logo'>
-                        <img className="logo-img" src={'https://www.carlogos.org/logo/BMW-M-logo-1920x1080.png'} alt='bmwlogo'/>
+                        <img className="logo-img" src={'https://i.pinimg.com/originals/71/22/9b/71229b4d078f7cce44afb17b71fd29dc.jpg'} alt='bmwlogo'/>
                     </div>
                 </div>
                 <div className='home-page-one-video-box'>

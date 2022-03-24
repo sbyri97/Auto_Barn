@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as carActions from '../../store/car'
 import { Link, useHistory } from "react-router-dom";
+import EditCarForm from "../EditCarForm/EditCarForm";
+import EditCarFormModal from "../EditCarForm/editModal";
 
 
 export default function UserCars() {
@@ -9,6 +11,10 @@ export default function UserCars() {
     const [isloading, setIsLoading] = useState(true);
     const dispatch = useDispatch()
     const history = useHistory()
+
+    const userCarsArray = useSelector((state) => Object.values(state.car.userCars))
+    // console.log('why is this loading', cars);
+
 
     useEffect(() => {
         if(sessionUser) {
@@ -19,9 +25,9 @@ export default function UserCars() {
         }
     }, [sessionUser, dispatch])
 
-    const cars = useSelector((state) => state.car.userCars)
-    console.log('why is this loading when back arrow', cars);
-    const  userCarsArray = Object.values(cars)
+    // console.log('why is this loading when back arrow', cars);
+    // const  userCarsArray = Object.values(cars)
+
 
 
     return (
@@ -38,14 +44,15 @@ export default function UserCars() {
                                 <p className='each-car-zip-txt'>
                                     {car.zip}
                                 </p>
-                                <button className="ed-del-button"
+                                {/* <button className="ed-del-button"
                                 onClick={(e) => {
-                                    e.preventDefault();
+                                    e.preventDefault()
                                     let path = `/editCar/${car.id}`
                                     history.push(path)
                                 }}
                                 >Edit
-                                </button>
+                                </button> */}
+                                <EditCarFormModal oldCar={car} carId={car.id}/>
                                 <button className="ed-del-button"
                                 onClick={(e) => {
                                     e.preventDefault()
@@ -58,7 +65,7 @@ export default function UserCars() {
                             </div>
                             <div className='each-car-details-div'>
                                 <p className='each-car-detail'>
-                                    {car.make} {car.model}
+                                   {car.year} {car.make} {car.model}
                                 </p>
                                 <p className='each-car-detail'>
                                     ${car.price}

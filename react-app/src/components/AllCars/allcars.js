@@ -44,7 +44,7 @@ export default function AllCars() {
                                         {car.ext_color}
                                     </p>
                                     <p className='each-car-detail'>
-                                        {car.make} {car.model}
+                                       {car.year} {car.make} {car.model}
                                     </p>
                                     <p className='each-car-detail'>
                                         $ {(car.price).toLocaleString()}

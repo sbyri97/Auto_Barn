@@ -15,7 +15,7 @@ class Car(db.Model):
   year = db.Column(db.Integer, nullable=False)
   make = db.Column(db.String(100), nullable=False)
   model = db.Column(db.String(100), nullable=False)
-  zip = db.Column(db.Integer, nullable=False)
+  zip = db.Column(db.String(5), nullable=False)
   created_at = db.Column(db.DateTime, default=datetime.now())
   updated_at = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
 

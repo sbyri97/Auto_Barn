@@ -1,0 +1,13 @@
+.mainFormPageContainer {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+    align-items: center;
+    justify-content: center;
+}
+
+.formMainDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -67,7 +67,7 @@ def edit_car(id):
     if form.validate_on_submit():
         car.user_id = curr_user_id
         car.price = form.data['price']
-        car.milegae = form.data['mileage']
+        car.mileage = form.data['mileage']
         car.ext_color = form.data['ext_color']
         car.int_color = form.data['int_color']
         car.body_style = form.data['body_style']
@@ -85,7 +85,7 @@ def edit_car(id):
 
         return car.to_dict()
     else:
-        return {'errors': validation_errors_to_error_messages(form.errors)}
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 @car_routes.route('/<int:id>', methods=['DELETE'])
 def delete_car(id):

@@ -73,7 +73,7 @@ export default function UserBookings() {
                         </div>
                         <div className='booked-car-details-div'>
                             <p className='booked-car-detail'>
-                                {car?.make} {car?.model}
+                               {car?.year} {car?.make} {car?.model}
                             </p>
                             <p className='booked-car-detail'>
                                 $ {(car?.price)?.toLocaleString()}

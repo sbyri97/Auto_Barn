@@ -1,42 +1,208 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { FaUserCircle, FaCaretDown, FaCaretUp, FaRegIdCard } from "react-icons/fa";
+import { RiUserShared2Line } from 'react-icons/ri'
 import LogoutButton from '../auth/LogoutButton';
 import './navbar.css'
 import LoginFormModal from '../auth/LoginFormModal';
+import logo from '../../images/Transparent-logo.png'
+import DemoButton from './demo';
+import SignUpFormModal from '../auth/SignUpFormModal';
 
 const NavBar = () => {
+  const sessionUser = useSelector((state) => state.session?.user)
+
+  const [yesDrpDwn, setYesDrpDown] = useState(false)
+
+  useEffect(() => {
+    setYesDrpDown(false);
+  }, []);
+
+  useEffect(() => {
+    if (!yesDrpDwn) return;
+
+    const closeMenu = () => {
+      setYesDrpDown(false);
+    };
+
+    document.addEventListener("click", closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [yesDrpDwn]);
+
   return (
     <nav className='main-navbar-container'>
+      <div className='navbar-logo-container'>
+        <NavLink to='/' exact={true} className='navbar-navlink-home'>
+            <img className='navbar-ab-logo' src={logo} alt='ab_logo' />
+        </NavLink>
+      </div>
+      {(!sessionUser) ?
       <div className='main-navbar-logout-items-container'>
-        <div>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
-          </NavLink>
+        <div className='navbar-demo-container'>
+          <div className='demo-btn'>
+            <DemoButton />
+          </div>
         </div>
-        {/* <div>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </div> */}
-        <div className='login-btn'>
-          <LoginFormModal />
-        </div>
-        <div>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </div>
-        <div>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </div>
-        <div>
-          <LogoutButton />
+        <div className='navbar-line'></div>
+        <div className='navbar-signup-login-container'>
+          <div className='navbar-signup'>
+            <SignUpFormModal />
+          </div>
+          <div className='navbar-line'></div>
+          <div className='navbar-login'>
+            <div className='login-btn'>
+              <LoginFormModal />
+            </div>
+          </div>
         </div>
       </div>
+      :
+      <div className='navbar-login-btn-container'>
+        <div className='navbar-all-vehicles'>
+          <NavLink to='/allcars' exact={true} className='navlink-allcars'>
+              Vehicles
+          </NavLink>
+        </div>
+        <div className='navbar-sell-vehicle'>
+          <NavLink to='/newcar' exact={true} className='navlink-sell'>
+              Sell Your Vehicle
+          </NavLink>
+        </div>
+        <button className='navbar-login-btn' onClick={(e)=> setYesDrpDown(!yesDrpDwn)}>
+          <div className='navbar-btn-div'>
+            <div className='navbar-user-div'>
+              <RiUserShared2Line />
+            </div>
+            <div className='navbar-username-container'>
+              {sessionUser.username}
+            </div>
+            {(!yesDrpDwn ?
+            <div className='navbar-drpdwn-btn'>
+              <FaCaretDown />
+            </div>
+            :
+            <div className='navbar-drpdwn-btn'>
+            <FaCaretUp />
+            </div>
+            )}
+          </div>
+        </button>
+        {yesDrpDwn && (
+          <div className='navbar-menu-div'>
+            <div className='navbar-menu-profile-btn'>
+              <NavLink to={`/myaccount`} exact={true} className='navbar-user-btn'>
+                <h3 className='navbar-profile-head'>MyAccount</h3>
+                <FaRegIdCard />
+              </NavLink>
+            </div>
+            <div className='navbar-menu-logout-btn'>
+              <LogoutButton />
+            </div>
+          </div>
+        )}
+      </div>
+      }
     </nav>
   );
 }
 
 export default NavBar;
+
+// const NavBar = () => {
+//   const sessionUser = useSelector((state) => state.session?.user)
+
+//   const [yesDrpDwn, setYesDrpDown] = useState(false)
+
+
+  // useEffect(() => {
+  //   setYesDrpDown(false);
+  // }, []);
+
+  // useEffect(() => {
+  //   if (!yesDrpDwn) return;
+
+  //   const closeMenu = () => {
+  //     setYesDrpDown(false);
+  //   };
+
+  //   document.addEventListener("click", closeMenu);
+
+  //   return () => document.removeEventListener("click", closeMenu);
+  // }, [yesDrpDwn]);
+
+
+//   return (
+//     <nav className='main-navbar-container'>
+//       {(!sessionUser) ?
+//           <div className='main-navbar-logout-items-container'>
+//             <div className='navbar-demo-container'>
+//               <NavLink to='/about' id='demo-btn'>
+//                 <div className='abt-btn'>
+//                   ABOUT US
+//                 </div>
+//               </NavLink>
+//             </div>
+//             <div className='navbar-line'></div>
+//             <div className='navbar-demo-container'>
+//                 <div className='demo-btn'>
+//                   <DemoUser />
+//                 </div>
+//             </div>
+//             <div className='navbar-line'></div>
+//             <div className='navbar-signup-login-container'>
+//               <div className='navbar-signup'>
+//                 <div className='signup-btn'>
+//                   <SignUpFormModal />
+//                 </div>
+//               </div>
+//               <div className='navbar-login'>
+//                 <div className='login-btn'>
+//                   <LoginFormModal />
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//       :
+      // <div className='navbar-login-btn-container'>
+      //     <button className='navbar-login-btn' onClick={(e)=> setYesDrpDown(!yesDrpDwn)}>
+      //     {/* // need to have a state with onclick changing that state */}
+      //       <div className='navbar-btn-div'>
+      //         <div className='navbar-user-div'>
+      //           <FaUserCircle />
+      //         </div>
+      //         <div className='navbar-username-container'>
+      //           {sessionUser.first_name} {sessionUser.last_name}
+      //         </div>
+      //         {(!yesDrpDwn ?
+      //         <div className='navbar-drpdwn-btn'>
+      //           <FaCaretDown />
+      //         </div>
+      //         :
+      //         <div className='navbar-drpdwn-btn'>
+      //         <FaCaretUp />
+      //         </div>
+      //         )}
+      //       </div>
+      //     </button>
+      //     {yesDrpDwn && (
+      //       <div className='navbar-menu-div'>
+      //         <div className='navbar-menu-profile-btn'>
+      //           <NavLink to={`/users/${sessionUser.id}`} exact={true} className='navbar-user-btn'>
+      //             <h3 className='navbar-profile-head'>Profile</h3>
+      //             <FaRegIdCard />
+      //           </NavLink>
+      //         </div>
+      //         <div className='navbar-menu-logout-btn'>
+      //           <LogoutButton />
+      //         </div>
+      //       </div>
+      //     )}
+      // </div>
+//     }
+//     </nav>
+//   );
+// }
+
+// export default NavBar;
