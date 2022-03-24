@@ -55,7 +55,7 @@ def new_car():
 
         return car.to_dict()
     else:
-        return {'errors': validation_errors_to_error_messages(form.errors)}
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 @car_routes.route('/editCar/<int:id>', methods=['PUT'])
 def edit_car(id):

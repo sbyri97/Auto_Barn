@@ -1,3 +1,4 @@
+from email.policy import default
 from .db import db
 from datetime import datetime
 
@@ -6,8 +7,8 @@ class Car(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-  price = db.Column(db.Integer, nullable=False)
-  mileage = db.Column(db.Integer, nullable=False)
+  price = db.Column(db.Integer, nullable=False, default=0)
+  mileage = db.Column(db.Integer, nullable=False, default=0)
   ext_color = db.Column(db.String(100), nullable=False)
   int_color = db.Column(db.String(100), nullable=False)
   body_style = db.Column(db.String(100), nullable=False)

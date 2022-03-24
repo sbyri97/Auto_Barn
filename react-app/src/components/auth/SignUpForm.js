@@ -7,6 +7,7 @@ import DemoButton from '../NavBar/demo';
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
@@ -15,12 +16,17 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+    // if (password === repeatPassword) {
+      const newUser = {name, username, email, password, confirm_password: repeatPassword}
+      const data = await dispatch(signUp(newUser));
       if (data) {
         setErrors(data)
       }
-    }
+    // }
+  };
+
+  const updateName = (e) => {
+    setName(e.target.value);
   };
 
   const updateUsername = (e) => {
@@ -59,6 +65,14 @@ const SignUpForm = () => {
           </div>
           <div>
             <label className='forminputs'>
+              <input
+              type='text'
+              className='formInputIndiv'
+              placeholder='Name'
+              name='name'
+              onChange={updateName}
+              value={name}
+              />
               <input
               type='text'
               className='formInputIndiv'

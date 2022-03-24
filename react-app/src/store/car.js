@@ -112,6 +112,9 @@ export const newCar = (car) => async (dispatch) => {
         const data = await response.json()
         dispatch(submittedCar(data));
         return data;
+    } else {
+      const errors = await response.json()
+      return errors
     }
 }
 
@@ -197,8 +200,9 @@ export default function reducer(state = initialState, action) {
         return newState;
       }
       case DELETE_CAR: {
-        newState = { ...state, car:{...state.car}}
+        newState = { ...state }
         delete newState.car[action.carId]
+        delete newState.userCars[action.carId]
         return newState;
       }
     default:

@@ -12,6 +12,7 @@ export default function InfoOne({ states }) {
     } = states;
 
     const yearOptions = [
+        {label: 'Year *', value: null},
         {label: '2022', value: 2022},
         {label: '2021', value: 2021},
         {label: '2020', value: 2020},
@@ -23,6 +24,7 @@ export default function InfoOne({ states }) {
     ]
 
     const makeOptions = [
+        {label: 'Make *', value: ''},
         {label: 'Mercedes-Benz', value: 'Mercedes-Benz'},
         {label: 'BMW', value: 'BMW'},
         {label: 'Audi', value: 'Audi'},
@@ -30,6 +32,7 @@ export default function InfoOne({ states }) {
     ]
 
     const fuelTypeOptions = [
+        {label: 'Fuel Type *', value: ''},
         {label: 'Gasoline', value: 'Gasoline'},
         {label: 'Hybrid', value: 'Hybrid'},
         {label: 'Electric', value: 'Electric'},
@@ -37,6 +40,7 @@ export default function InfoOne({ states }) {
 
 
     const bodyStyleOptions = [
+        {label: 'Body Style *', value: ''},
         {label: 'Sedan', value: 'Sedan'},
         {label: 'SUV', value: 'SUV'},
         {label: 'Coupe', value: 'Coupe'},
@@ -44,6 +48,7 @@ export default function InfoOne({ states }) {
     ]
 
     const extColorOptions = [
+        {label: 'Exterior Color *', value: ''},
         {label: 'Red', value: 'Red'},
         {label: 'Blue', value: 'Blue'},
         {label: 'Green', value: 'Green'},
@@ -55,6 +60,7 @@ export default function InfoOne({ states }) {
     ]
 
     const intColorOptions = [
+        {label: 'Interior Color *', value: ''},
         {label: 'Beige', value: 'Beige'},
         {label: 'Black', value: 'Black'},
         {label: 'Brown', value: 'Brown'},
