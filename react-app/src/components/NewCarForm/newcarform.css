@@ -6,8 +6,117 @@
     justify-content: center;
 }
 
-.formMainDiv {
+.car-formMainDiv {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 50vw;
 }
+
+.info-outer-div{
+    width: 100%;
+}
+
+.info-title {
+    text-align: center;
+}
+
+.year-make, .fuel-body, .ext-int{
+    display: inline-block;
+    width: calc(50% - 0.5em);
+}
+
+.year-make h3, .fuel-body h3, .ext-int h3, .model h3{
+    display: block;
+    margin-bottom: 1%;
+}
+
+.year-make select, .fuel-body select, .ext-int select{
+    width: 95%;
+    padding: 10px 10px;
+}
+
+.year .fuel{
+    margin-right: 1em;
+}
+
+.model {
+    display: inline-block;
+    width: 100%;
+}
+
+input.model-formTextBox{
+    width: 92%;
+    padding: 10px 10px;
+}
+
+.price-mileage-zip{
+    display: inline-block;
+    width: calc(33% - 0.5em);
+    margin-right: 0.5em;
+}
+
+.price-mileage-zip h3{
+    display: block;
+    margin-bottom: 1%;
+}
+
+input.priceValue, input.mileageValue, input.zipValue{
+    width: 82%;
+    padding: 10px 10px;
+}
+
+textarea.image-formTextBox{
+    width: 92%;
+    padding: 10px 10px;
+    resize: none;
+}
+
+
+.car-formSubmitBtn {
+    background:#ab1a1a;
+    color:#fff;
+    border:none;
+    position:relative;
+    height:60px;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+
+    /* padding: 15px 10px 15px 10px; */
+    /* width: 100%; */
+    /* color: rgb(0, 0, 0); */
+    /* background: rgb(255, 255, 255); */
+    font-size: 15px;
+    letter-spacing: 2px;
+    border: none;
+    /* border-radius: 50px; */
+    /* cursor: pointer; */
+    font-family: "NexaExtraBold";
+}
+
+  button.car-formSubmitBtn:hover{
+    background:#fff;
+    color:#ab1a1a;
+  }
+  button.car-formSubmitBtn:before,button.car-formSubmitBtn:after{
+      position:absolute;
+      top:0;
+      right:0;
+      height:2px;
+      width:0;
+      background: #ab1a1a;
+      transition:400ms ease all;
+      content:'';
+  }
+  button.car-formSubmitBtn:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  button.car-formSubmitBtn:hover:before,button:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }

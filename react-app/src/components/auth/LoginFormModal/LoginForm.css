@@ -63,27 +63,27 @@
     font-family: "NexaLight";
 }
 
-.loginSubmitBtn {
+/* .loginSubmitBtn {
     background:#1AAB8A;
     color:#fff;
     border:none;
     position:relative;
     height:60px;
-    /* font-size:1.6em; */
+    font-size:1.6em;
     padding:0 2em;
     cursor:pointer;
     transition:800ms ease all;
-    outline:none;
+    outline:none; */
 
     /* padding: 15px 10px 15px 10px; */
     /* width: 100%; */
     /* color: rgb(0, 0, 0); */
-    /* background: rgb(255, 255, 255); */
+    /* background: rgb(255, 255, 255);
     font-size: 15px;
     letter-spacing: 2px;
     border: none;
-    /* border-radius: 50px; */
-    /* cursor: pointer; */
+    border-radius: 50px;
+    cursor: pointer;
     font-family: "NexaExtraBold";
 }
 

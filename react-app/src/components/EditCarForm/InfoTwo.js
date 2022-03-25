@@ -35,6 +35,7 @@ export default function InfoTwo({ states }) {
             className="zipValue"
             type="number"
             value={zip}
+            placeholder="Zip Code"
             onChange={(e) => {
               setZip(e.target.value);
             }}

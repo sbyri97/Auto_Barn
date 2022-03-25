@@ -73,7 +73,7 @@ export default function NewCarForm() {
 
       return (
         <div className="mainFormPageContainer">
-            <form className='formMainDiv' onSubmit={onLogin}>
+            <form className='car-formMainDiv' onSubmit={onLogin}>
                 <h2 className='playlist-form-title'>Sell Your Vehicle</h2>
                 <div className='errors'>
                     {validationErrors?.map((error, ind) => (
@@ -82,17 +82,17 @@ export default function NewCarForm() {
                 </div>
                 <div className='formWelcomeBox'>
                 </div>
-                <div>
+                <div className='info-outer-div'>
                     <InfoOne states={states}/>
                 </div>
-                <div>
+                <div className='info-outer-div'>
                     <InfoTwo states={states}/>
                 </div>
-                <div>
+                <div className='info-outer-div'>
                     <Images states={states}/>
                 </div>
-                <div className='loginSubmitButtons'>
-                <button type='submit' className='loginSubmitBtn'>Submit Car</button>
+                <div className='car-SubmitButtons'>
+                <button type='submit' className='car-formSubmitBtn'>Submit Car</button>
                 </div>
             </form>
         </div>

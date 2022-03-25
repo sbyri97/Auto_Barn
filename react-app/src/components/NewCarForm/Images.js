@@ -6,11 +6,11 @@ export default function Images({ states }) {
     } = states;
 
   return (
-    <div>
-      <h2>&nbsp; Image Url</h2>
+    <div className="model TextContainer">
+      <h3>&nbsp; Image Url:</h3>
       <div className="formTextContainer">
         <textarea
-        className="formTextBox"
+        className="image-formTextBox"
         type="textarea"
         placeholder="www.imageurlgoeshere.com/niceimage.jpg (Note: Must be a jpg, jpeg, png format)"
         value={imageUrl}

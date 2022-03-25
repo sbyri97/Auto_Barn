@@ -26,7 +26,7 @@ export default function EditTryACar({carId}) {
             month = '0' + month;
         }
 
-        let day = (anyDate.getDate() + 1).toString();
+        let day = (anyDate.getDate()).toString();
         console.log(day);
         if (day.length < 2) {
             day = '0' + day;
@@ -34,21 +34,27 @@ export default function EditTryACar({carId}) {
         }
 
         return [year, month, day].join('-');
-    }
-    const start_date = formatDate(bookingDeets?.start_date)
-    const end_date = formatDate(bookingDeets?.end_date)
-    const booking_id = bookingDeets?.id
-
-    const startDateState = new Date(start_date);
-    // startDateState.setDate(startDateState.getDate() + 1)
-
-    const endDateState = new Date(end_date);
-    // endDateState.setDate(endDateState.getDate() + 1)
+      }
 
 
-    const [strtDate, setStrtDate] = useState(startDateState);
-    const [enddDate, setEnddDate] = useState(endDateState);
-    const [errors, setErrors] = useState([]);
+      const start_date = bookingDeets?.start_date
+      const end_date = bookingDeets?.end_date
+      const booking_id = bookingDeets?.id
+
+      console.log(start_date);
+
+      const startDateState = new Date(start_date);
+      const newStartDateState = new Date(startDateState.setDate(startDateState.getDate() + 1))
+      // // startDateState.setDate(startDateState.getDate() + 1)
+      const endDateState = new Date(end_date);
+      const newEndDateState = new Date(endDateState.setDate(endDateState.getDate() + 1))
+
+      // endDateState.setDate(endDateState.getDate() + 1)
+      const [strtDate, setStrtDate] = useState(newStartDateState);
+      const [enddDate, setEnddDate] = useState(newEndDateState);
+      const [errors, setErrors] = useState([]);
+
+
 
 
     const onTry = async (e) => {
@@ -95,10 +101,10 @@ export default function EditTryACar({carId}) {
                   </ul>
                   <div className="create-date date">
                     <label htmlFor="startDate">Start Date</label>
+                    {console.log(strtDate)}
                     <DatePicker
                     selected={strtDate}
                     onChange={(date) => setStrtDate(date)}
-                    minDate={strtDate}
                     required/>
                     {/* <input
                       className="create-car-booking"
@@ -112,11 +118,11 @@ export default function EditTryACar({carId}) {
                   </div>
                   <div className="create-date date">
                     <label htmlFor="endDate">End Date</label>
+                    {console.log(enddDate)}
                     <DatePicker
                     selected={enddDate}
                     value={enddDate}
                     onChange={(date) => setEnddDate(date)}
-                    minDate={strtDate}
                     // maxDate={fiveDaysLater}
                     required/>
                     {/* <input
@@ -131,6 +137,7 @@ export default function EditTryACar({carId}) {
                   </div>
                   <button className="try-car-btn" type="submit">
                     Edit Reservation
+                    {console.log(enddDate)}
                   </button>
                   <Link className="back-to-cars-link" to="/allcars">
                     Back to All Cars
