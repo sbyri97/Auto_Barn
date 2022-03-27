@@ -17,6 +17,8 @@ import UserCars from './components/UserCars/UserCars';
 import LoadingData from './components/EditCarForm/LoadingData';
 import EachCar from './components/EachCar/EachCar';
 import MyAccount from './components/MyAccount/MyAccount';
+import UnauthenticatedUser from './components/auth/UnAuthenticated';
+import PageNotFound from './components/NotFoundPages/pagenotfound';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,35 +42,38 @@ function App() {
         {/* <Route path='/login' exact={true}>
           <LoginForm />
         </Route> */}
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
+        <Route path="/unauthenticatedUser" exact={true}>
+          <UnauthenticatedUser />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
+        {/* <Route path='/sign-up' exact={true}>
+          <SignUpForm />
+        </Route> */}
+        {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        </ProtectedRoute> */}
+        {/* <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <Route path='/' exact={true} >
           <HomePage />
         </Route>
-        <Route path='/newCar' exact={true} >
+        <ProtectedRoute path='/newCar' exact={true} >
           <NewCarForm />
-        </Route>
-        {/* <Route path='/editCar/:carId' exact={true} >
-          <LoadingData />
-        </Route> */}
-        <Route path='/allCars' exact={true} >
+        </ProtectedRoute>
+        <ProtectedRoute path='/allCars' exact={true} >
           <AllCars />
-        </Route>
-        <Route path='/userCars/:userId' exact={true} >
+        </ProtectedRoute>
+        <ProtectedRoute path='/userCars/:userId' exact={true} >
           <UserCars />
-        </Route>
-        <Route path='/cars/:carId' exact={true} >
+        </ProtectedRoute>
+        <ProtectedRoute path='/cars/:carId' exact={true} >
           <EachCar />
-        </Route>
-        <Route path='/myaccount' exact={true} >
+        </ProtectedRoute>
+        <ProtectedRoute path='/myaccount' exact={true} >
           <MyAccount />
+        </ProtectedRoute>
+        <Route path='*'>
+          <PageNotFound />
         </Route>
       </Switch>
     </>

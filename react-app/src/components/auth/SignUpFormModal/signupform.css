@@ -7,7 +7,8 @@
   .signUpElements {
     display: flex;
     flex-direction: column;
-    background-image: linear-gradient(90deg, rgba(255,8,22,0.6853335084033614) 23%, rgba(172,41,41,0.4808517156862745) 46%, rgba(0,0,0,0.46964723389355745) 66%);
+    background: rgb(15, 15, 15);
+    /* background-image: linear-gradient(90deg, rgba(255,8,22,0.6853335084033614) 23%, rgba(172,41,41,0.4808517156862745) 46%, rgba(0,0,0,0.46964723389355745) 66%); */
     align-items: center;
     margin-top: 100px;
     padding: 30px 20px;
@@ -20,6 +21,8 @@
     inline-size: 250px;
     overflow-wrap: break-word;
     font-family: "NexaHeavy";
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .formMainDiv {
@@ -52,7 +55,53 @@
     font-family: "NexaLight";
   }
 
+  button.submitBtn:hover{
+    background:#fff;
+    color:#ab1a1a;
+  }
+  button.submitBtn:before,button.submitBtn:after
+  {
+      position:absolute;
+      top:0;
+      right:0;
+      height:2px;
+      width:0;
+      background: #ab1a1a;
+      transition:400ms ease all;
+      content:'';
+  }
+  button.submitBtn:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  button.submitBtn:hover:before,button.submitBtn:hover:after
+  {
+    width:100%;
+    transition:800ms ease all;
+  }
+
   .submitBtn {
+    background:#ab1a1a;
+    color:#fff;
+    border:none;
+    position:relative;
+    min-height:40px;
+    /* padding:0 2em; */
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+    margin-right: 5%;
+    width: 100%;
+    font-size: 15px;
+    letter-spacing: 2px;
+    border: none;
+    font-family: "NexaExtraBold";
+    border-radius: 4px;
+}
+
+  /* .submitBtn {
     padding: 15px 10px 15px 10px;
     width: 100%;
     color: white;
@@ -63,7 +112,7 @@
     border-radius: 50px;
     cursor: pointer;
     font-family: "NexaExtraBold";
-  }
+  } */
 
   .orBox {
     margin-top: 25px;
@@ -118,4 +167,5 @@
 
   .errors {
     color: rgb(0, 0, 0);
+    margin-right: 9%;
   }

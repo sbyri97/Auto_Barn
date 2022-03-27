@@ -50,58 +50,73 @@ export default function UserBookings() {
 
 
     return (
-    <div className='mainbookingContainer'>
-        {isloading ? (
-            <h2 className="loading">Your Bookings Are Loading</h2>
-        ) :
-            <div className='booked-cars-main-grid'>
-                {userCarsArray?.map((car, i) => (
-                    <div>
-                        {(car?.bookings?.map((booking, j) => (
-                            ((booking?.user_id === sessionUser?.id) ? (
-                                <div className='booked-car-outerbox' key={`${i}`}>
-                                    <div className='booked-car-zip'>
-                                        <p className='booked-car-zip-txt'>
-                                            {car?.zip}
-                                        </p>
-                                        <button className="ed-del-button"
-                                        onClick={(e) => {
-                                            e.preventDefault()
-                                            // console.log(bookingDeets[car.id].car_id)
-                                            dispatch(deleteTryACar((bookingDeets[car.id].id), car.id))
-                                        }}
-                                        >Delete Booking</button>
-                                    </div>
-                                    <div className='booked-car-img-div'>
-                                        <img className='booked-car-img' src={car?.images?.[0].url} alt='each-car-img-alt'/>
-                                    </div>
-                                    <div className='booked-car-details-div'>
-                                        <p className='booked-car-detail'>
-                                        {car?.year} {car?.make} {car?.model}
-                                        </p>
-                                        <p className='booked-car-detail'>
-                                            $ {(car?.price)?.toLocaleString()}
-                                        </p>
-                                            <div className="booked-car-booking" key={`${j}`}>
-                                                    <div className="booked-car-dates">
-                                                        <p className="booked-car-txt">
-                                                            Reserved Dates: &nbsp;
-                                                        </p>
-                                                        {formatStrDate(booking?.start_date)} - {formatStrDate(booking?.end_date)}
-                                                    </div>
-                                            </div>
-                                        <Link to={`/cars/${car.id}`} className='vehicle-detail-view-link'>
-                                            View Vehicle Details
-                                        </Link>
-                                    </div>
-                                </div> )
-                            : null
-                            )
-                        )))}
-                    </div>
-                ))}
-            </div>
-        }
-    </div>
+        <div>
+            {(userCarsArray.length !== 0)? (
+                <div className='mainbookingContainer'>
+                    <h2 className="my-acc-booking-txt">
+                        My Bookings
+                    </h2>
+                    {isloading ? (
+                        <h2 className="loading">Your Bookings Are Loading</h2>
+                    ) :
+                        <div className='booked-cars-main-grid'>
+                            {userCarsArray?.map((car, i) => (
+                                <div>
+                                    {(car?.bookings?.map((booking, j) => (
+                                        ((booking?.user_id === sessionUser?.id) ? (
+                                            <div className='booked-car-outerbox' key={`${i}`}>
+                                                <div className='booked-car-zip'>
+                                                    <p className='booked-car-zip-txt'>
+                                                        {car?.zip}
+                                                    </p>
+                                                    <button className="ed-del-button"
+                                                    onClick={(e) => {
+                                                        e.preventDefault()
+                                                        // console.log(bookingDeets[car.id].car_id)
+                                                        dispatch(deleteTryACar((bookingDeets[car.id].id), car.id))
+                                                    }}
+                                                    >Delete Booking</button>
+                                                </div>
+                                                <div className='booked-car-img-div'>
+                                                    <img className='booked-car-img' src={car?.images?.[0].url}
+                                                    alt='each-car-img-alt'
+                                                    onError={(e) => {
+                                                        e.target.src = "https://tonkinwilsonvillenissan.com/content/plugins/dealer-tower/assets/img/no_photo.jpg"
+                                                    }}
+                                                    />
+                                                </div>
+                                                <div className='booked-car-details-div'>
+                                                    <p className='booked-car-detail'>
+                                                    {car?.year} {car?.make} {car?.model}
+                                                    </p>
+                                                    <p className='booked-car-detail'>
+                                                        $ {Number(car?.price)?.toLocaleString()}
+                                                    </p>
+                                                        <div className="booked-car-booking" key={`${j}`}>
+                                                                <div className="booked-car-dates">
+                                                                    <p className="booked-car-txt">
+                                                                        Reserved Dates: &nbsp;
+                                                                    </p>
+                                                                    {formatStrDate(booking?.start_date)} - {formatStrDate(booking?.end_date)}
+                                                                </div>
+                                                        </div>
+                                                    <Link to={`/cars/${car.id}`} className='vehicle-detail-view-link'>
+                                                        View Vehicle Details
+                                                    </Link>
+                                                </div>
+                                            </div> )
+                                        : null
+                                        )
+                                    )))}
+                                </div>
+                            ))}
+                        </div>
+                    }
+                </div>
+            )
+            :
+            <div className="no-cars-bookings"> YOU DO NOT HAVE ANY BOOKINGS </div>
+            }
+        </div>
     )
 }

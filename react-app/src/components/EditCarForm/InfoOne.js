@@ -71,61 +71,72 @@ export default function InfoOne({ states }) {
 
 
   return (
-    <div>
-      <h2>&nbsp; Year</h2>
-      <label className="optionsLabel">
-          <select value={year} onChange={(e) => setYear(e.target.value)}>
-            {yearOptions.map((yearOption) => (
-                <option value={yearOption.value}>{yearOption.label}</option>
-            ))}
-          </select>
-      </label>
-      <label className="optionsLabel">
-          <select value={make} onChange={(e) => setMake(e.target.value)}>
-            {makeOptions.map((makeOption) => (
-                <option value={makeOption.value}>{makeOption.label}</option>
-            ))}
-          </select>
-      </label>
-      <label>
-        <div className="formTextContainer">
+    <div className="info-div">
+        <h2 className="info-title">&nbsp; Select Your Vehicle Information</h2>
+        <div className="year-make-div">
+        <label className="year-make year optionsLabel">
+            <h3>Year:</h3>
+            <select value={year} onChange={(e) => setYear(e.target.value)}>
+                {yearOptions.map((yearOption) => (
+                    <option value={yearOption.value}>{yearOption.label}</option>
+                ))}
+            </select>
+        </label>
+        <label className="year-make make optionsLabel">
+            <h3>Make:</h3>
+            <select value={make} onChange={(e) => setMake(e.target.value)}>
+                {makeOptions.map((makeOption) => (
+                    <option value={makeOption.value}>{makeOption.label}</option>
+                ))}
+            </select>
+        </label>
+        </div>
+        <div className="model TextContainer">
+            <h3>Model: </h3>
             <input
-            className="formTextBox"
+            className="model-formTextBox"
             type="text"
-            placeholder="Enter Car Model"
+            placeholder="Enter Car Model *"
             value={model}
             onChange={(e) => {
                 setModel(e.target.value)}} />
         </div>
-      </label>
-      <label className="optionsLabel">
-          <select value={fuelType} onChange={(e) => setFuelType(e.target.value)}>
-            {fuelTypeOptions.map((fuelTypeOption) => (
-                <option value={fuelTypeOption.value}>{fuelTypeOption.label}</option>
-            ))}
-          </select>
-      </label>
-      <label className="optionsLabel">
-          <select value={bodyStyle} onChange={(e) => setBodyStyle(e.target.value)}>
-            {bodyStyleOptions.map((bodyStyleOption) => (
-                <option value={bodyStyleOption.value}>{bodyStyleOption.label}</option>
-            ))}
-          </select>
-      </label>
-      <label className="optionsLabel">
-          <select value={extColor} onChange={(e) => setExtColor(e.target.value)}>
-            {extColorOptions.map((extColorOption) => (
-                <option value={extColorOption.value}>{extColorOption.label}</option>
-            ))}
-          </select>
-      </label>
-      <label className="optionsLabel">
-          <select value={intColor} onChange={(e) => setIntColor(e.target.value)}>
-            {intColorOptions.map((intColorOption) => (
-                <option value={intColorOption.value}>{intColorOption.label}</option>
-            ))}
-          </select>
-      </label>
+        <div className="fuel-body-div">
+            <label htmlFor="Fuel Type" className="fuel-body fuel optionsLabel">
+                <h3>Fuel Type:</h3>
+                <select value={fuelType} onChange={(e) => setFuelType(e.target.value)}>
+                    {fuelTypeOptions.map((fuelTypeOption) => (
+                        <option value={fuelTypeOption.value}>{fuelTypeOption.label}</option>
+                    ))}
+                </select>
+            </label>
+            <label htmlFor="Body Style" className="fuel-body body optionsLabel">
+                <h3>Body Style:</h3>
+                <select value={bodyStyle} onChange={(e) => setBodyStyle(e.target.value)}>
+                    {bodyStyleOptions.map((bodyStyleOption) => (
+                        <option value={bodyStyleOption.value}>{bodyStyleOption.label}</option>
+                    ))}
+                </select>
+            </label>
+        </div>
+        <div className="color-div">
+            <label htmlFor="Exterior Color" className="ext-int optionsLabel">
+                <h3>Exterior Color:</h3>
+                <select value={extColor} onChange={(e) => setExtColor(e.target.value)}>
+                    {extColorOptions.map((extColorOption) => (
+                        <option value={extColorOption.value}>{extColorOption.label}</option>
+                    ))}
+                </select>
+            </label>
+            <label htmlFor="Interior Color" className="ext-int optionsLabel">
+                <h3>Interior Color:</h3>
+                <select value={intColor} onChange={(e) => setIntColor(e.target.value)}>
+                    {intColorOptions.map((intColorOption) => (
+                        <option value={intColorOption.value}>{intColorOption.label}</option>
+                    ))}
+                </select>
+            </label>
+        </div>
     </div>
   );
 }

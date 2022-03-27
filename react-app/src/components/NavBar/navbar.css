@@ -131,6 +131,8 @@
     border: none;
     cursor: pointer;
     padding: 1px 6px;
+    text-decoration: none;
+
 
 }
 
@@ -139,12 +141,22 @@
     height: 20px;
     color: white;
     font-family: 'NexaLight';
+    text-decoration: none;
 }
 
 .navbar-profile-head{
     color: white;
     font-family: 'NexaLight';
     font-size: 16px;
+    text-decoration: none;
+}
+
+.navbar-user-btn:visited{
+    text-decoration: none;
+}
+
+.navbar-profile-head{
+    text-decoration: none;
 }
 
 .navbar-menu-logout-btn button{

@@ -61,7 +61,7 @@ const SignUpForm = () => {
             ))}
           </div>
           <div className='formWelcomeBox'>
-            <h2 className='formWelcomeBoxTxt'>Sign up to shop vehicles.</h2>
+            <h2 className='formWelcomeBoxTxt'>Sign up to shop vehicles</h2>
           </div>
           <div>
             <label className='forminputs'>

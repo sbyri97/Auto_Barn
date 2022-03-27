@@ -67,7 +67,6 @@ p:nth-child(2) {
     text-decoration: none;
     color: rgb(10, 111, 158);
     font-size: 16px;
-    margin-top: 8px;
 
 }
 
@@ -75,7 +74,6 @@ p:nth-child(2) {
     text-decoration: none;
     color: rgb(10, 111, 158);
     font-size: 16px;
-    margin-top: 8px;
 }
 
 .booked-car-dates {
@@ -83,4 +81,9 @@ p:nth-child(2) {
     flex-direction: row;
     align-items: center;
     align-content: flex-start;
+}
+
+.no-cars-bookings{
+    margin-top: 5%;
+    margin-left: 12%;
 }

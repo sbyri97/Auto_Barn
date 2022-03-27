@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './homePage.css'
 import porsche from '../../images/porsche.png'
 import { useHistory } from 'react-router-dom';
+import AboutMe from '../AboutFooter/aboutme';
 
 export default function HomePage() {
     const history = useHistory()
@@ -16,16 +17,16 @@ export default function HomePage() {
             <div className='home-page-one'>
                 <div className='home-page-one-logos'>
                     <div className='logo'>
-                        <img className="logo-img" src={'https://1000logos.net/wp-content/uploads/2020/03/AMG-Logo.jpg'} alt='bmwlogo'/>
+                        <img className="logo-img" src={'https://1000logos.net/wp-content/uploads/2020/03/AMG-Logo.jpg'} alt='amglogo'/>
                     </div>
                     <div className='logo'>
                         <img className="logo-img" src={'https://www.carlogos.org/logo/BMW-M-logo-1920x1080.png'} alt='bmwlogo'/>
                     </div>
                     <div className='logo'>
-                        <img className="logo-img" src={'https://www.gran-turismo.com/gtsport/decal/7349968051048022528_1.png'} alt='bmwlogo'/>
+                        <img className="logo-img" src={'https://www.gran-turismo.com/gtsport/decal/7349968051048022528_1.png'} alt='rslogo'/>
                     </div>
                     <div className='logo'>
-                        <img className="logo-img" src={'https://i.pinimg.com/originals/71/22/9b/71229b4d078f7cce44afb17b71fd29dc.jpg'} alt='bmwlogo'/>
+                        <img className="logo-img-porsche" src={'https://i.pinimg.com/originals/71/22/9b/71229b4d078f7cce44afb17b71fd29dc.jpg'} alt='porschelogo'/>
                     </div>
                 </div>
                 <div className='home-page-one-video-box'>
@@ -35,13 +36,14 @@ export default function HomePage() {
                     <div className='home-page-one-video-text'>
                         <h2 className='welcome-text'>Welcome To</h2>
                         <h2 className='ab-text'>Auto Barn</h2>
+                        <h3 className='home-info-txt'>German Cars for Sale or Sell Your German Vehicle</h3>
                     </div>
                 </div>
             </div>
             <div className='home-page-two'>
-                <div className='home-page-two-car-image'>
+                {/* <div className='home-page-two-car-image'> */}
                  <img className='hp-car-img' src={porsche} alt='car-top-img'/>
-                </div>
+                {/* </div> */}
                 <div className='home-page-two-inner'>
                     <div className='home-page-two-btn-box'>
                         <button className='home-page-vehicles-btn' onClick={onClick}>View Vehicles for sale</button>
@@ -50,6 +52,9 @@ export default function HomePage() {
                         <p className='home-page-quote-text'>We drive to feel alive</p>
                     </div>
                 </div>
+            </div>
+            <div className='about-outer-div'>
+                <AboutMe />
             </div>
         </div>
 

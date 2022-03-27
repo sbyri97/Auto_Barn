@@ -190,7 +190,7 @@ export default function reducer(state = initialState, action) {
         case DELETE_BOOKING: {
             newState = {...state };
             delete newState.booking[action.carId]
-            delete newState.carReservation[action.bookingId]
+            delete newState.carReservation[action.carId]
             return newState
         }
         case CLEAR_BOOKING: {

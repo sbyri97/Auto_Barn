@@ -7,6 +7,7 @@ import BookingFormModal from '../BookACar/BookCarModal';
 import { getUserReservations } from '../../store/booking';
 import './eachcar.css'
 import EditBookingFormModal from '../BookACar/EditBookingModal';
+import PageNotFound from '../NotFoundPages/pagenotfound';
 
 export default function EachCar() {
     const { carId } = useParams();
@@ -22,11 +23,20 @@ export default function EachCar() {
     console.log(userBooked);
 
     const [isloading, setIsLoading] = useState(true);
+    const [noCar, setNoCar] = useState(false)
 
 
     useEffect(() => {
       if(sessionUser) {
-        dispatch(carActions.getSingleCar(carId));
+        dispatch(carActions.getSingleCar(carId)).then(
+            response => {
+                if(response.status === 404) {
+                    console.log(response);
+                    setNoCar(true)
+                    console.log(noCar);
+                }
+            }
+        );
         dispatch(getUserReservations(sessionUser.id))
         setTimeout(() => {
             setIsLoading(false);
@@ -38,6 +48,10 @@ export default function EachCar() {
     //     if(sessionUser) {
     //     }
     // }, [sessionUser, dispatch])
+
+    if(noCar) {
+        return <PageNotFound />
+    }
 
     const diffUser = (sessionUser?.id !== theCar?.user_id)
 
@@ -55,14 +69,19 @@ export default function EachCar() {
                 </div>
                 <div className='single-car-upper-box'>
                     <div className='single-car-img-div'>
-                        <img className='single-car-img' src={theCar?.images[0]?.url}/>
+                        <img className='single-car-img'
+                        src={theCar?.images[0]?.url}
+                        onError={(e) => {
+                            e.target.src = "https://tonkinwilsonvillenissan.com/content/plugins/dealer-tower/assets/img/no_photo.jpg"
+                        }}
+                        />
                     </div>
                     <div className='single-car-upper-info'>
                         <h2 className='single-car-title'>
                             {theCar.year} {theCar.make} {theCar.model}
                         </h2>
                         <h2 className='single-car-price'>
-                            Price: ${(theCar.price).toLocaleString()}
+                            Price: ${Number(theCar.price).toLocaleString()}
                         </h2>
                         {(userBooked === sessionUser.id) ?
                         <EditBookingFormModal carId={carId}/>
@@ -79,7 +98,7 @@ export default function EachCar() {
                         Stock # 81323{theCar.id}
                         </h3>
                         <h3 className='single-car-lower-info'>
-                        Mileage : {(theCar.mileage).toLocaleString()}
+                        Mileage : {Number(theCar.mileage).toLocaleString()}
                         </h3>
                         <h3 className='single-car-lower-info'>
                         Exterior Color: {theCar.ext_color}

@@ -12,7 +12,7 @@ export default function Images({ states }) {
         <textarea
         className="image-formTextBox"
         type="textarea"
-        placeholder="www.imageurlgoeshere.com/niceimage.jpg (Note: Must be a jpg, jpeg, png format)"
+        placeholder="https://www.imageurlgoeshere.com/niceimage.jpg (Note: Must be a jpg, jpeg, png format)"
         value={imageUrl}
         onChange={(e) => {
             setImageUrl(e.target.value)}} />

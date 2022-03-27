@@ -6,6 +6,17 @@
     justify-content: center;
 }
 
+.main-edit-FormPageContainer{
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 110%;
+    overflow-y: scroll;
+}
+
 .car-formMainDiv {
     display: flex;
     flex-direction: column;

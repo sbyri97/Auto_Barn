@@ -22,9 +22,9 @@ export default function MyAccount() {
                 <UserCars />
             </div>
             <div className="my-acc-bookings-container">
-                <h2 className="my-acc-booking-txt">
+                {/* <h2 className="my-acc-booking-txt">
                     My Bookings
-                </h2>
+                </h2> */}
                 <div className="my-acc-bookings-div">
                     <UserBookings />
                 </div>

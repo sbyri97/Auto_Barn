@@ -40,7 +40,7 @@ export default function UserCars() {
                         <h2 className="loading">Your Cars Are Loading</h2>
                     ) :
                         <div className='all-cars-container-title'>
-                            ALL OF YOUR VEHICLES
+                            Your Vehicles
                             <div className='all-cars-main-grid'>
                                 {userCarsArray?.map((car, i) => (
                                     ((sessionUser?.id === car?.user_id) ?
@@ -58,17 +58,23 @@ export default function UserCars() {
                                             >Delete</button>
                                         </div>
                                         <div className='each-car-img-div'>
-                                            <img className='each-car-img' src={car?.images?.[0].url} alt='each-car-img-alt'/>
+                                            <img className='each-car-img'
+                                            src={car?.images?.[0].url}
+                                            alt='each-car-img-alt'
+                                            onError={(e) => {
+                                                e.target.src = "https://tonkinwilsonvillenissan.com/content/plugins/dealer-tower/assets/img/no_photo.jpg"
+                                            }}
+                                            />
                                         </div>
                                         <div className='each-car-details-div'>
                                             <p className='each-car-detail'>
                                             {car.year} {car.make} {car.model}
                                             </p>
                                             <p className='each-car-detail'>
-                                                ${car.price}
+                                                $ {Number(car?.price)?.toLocaleString()}
                                             </p>
                                             <p className='each-car-detail'>
-                                                {car.mileage}
+                                                Mileage: {Number(car?.mileage)?.toLocaleString()}
                                             </p>
                                             <p className='each-car-detail'>
                                                 {car.ext_color}
@@ -86,7 +92,7 @@ export default function UserCars() {
                     }
                 </div>
             ):
-            <div> YOU DO NOT HAVE ANY CARS </div>
+            <div className="no-cars-bookings"> YOU DO NOT HAVE ANY VEHICLES </div>
             }
         </div>
     )

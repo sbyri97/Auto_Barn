@@ -5,3 +5,84 @@
 }
 
 
+#main-booking-div {
+    background-color: white;
+}
+
+
+#try-a-car-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 110%;
+}
+
+.create-date {
+    display: flex;
+    margin-bottom: 5%;
+    margin-top: 3%;
+    align-items: center;
+}
+
+button.try-car-btn:hover, button.try-me-btn:hover{
+    background:#fff;
+    color:#ab1a1a;
+  }
+  button.try-car-btn:before,button.try-car-btn:after, button.try-me-btn:before,
+  button.try-me-btn::after
+  {
+      position:absolute;
+      top:0;
+      right:0;
+      height:2px;
+      width:0;
+      background: #ab1a1a;
+      transition:400ms ease all;
+      content:'';
+  }
+  button.try-car-btn:after, button.try-me-btn:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  button.try-car-btn:hover:before,button:hover:after,
+  button.try-me-btn:hover:before, button.try-me-btn:hover:after
+  {
+    width:100%;
+    transition:800ms ease all;
+  }
+
+  .try-car-btn, .try-me-btn {
+    background:#ab1a1a;
+    color:#fff;
+    border:none;
+    position:relative;
+    min-height:20px;
+    /* padding:0 2em; */
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+    margin-right: 5%;
+
+    font-size: 15px;
+    letter-spacing: 2px;
+    border: none;
+    font-family: "NexaExtraBold";
+}
+
+.book-car-h2 {
+    margin-right: 5%;
+}
+
+.back-to-cars-link {
+    margin-right: 9%;
+}
+
+.back-to-cars-link:visited {
+    color: black;
+}
+
+.back-to-cars-link:hover {
+    color: #ab1a1a;
+}

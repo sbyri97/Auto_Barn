@@ -37,7 +37,8 @@
 .each-car-zip {
     text-align: center;
     display: flex;
-    justify-content: space-around
+    justify-content: space-around;
+    align-items: center;
 }
 
 .ed-del-button {
@@ -80,4 +81,11 @@ p:nth-child(2) {
 .vehicle-detail-view-link:visited{
     text-decoration: none;
     color: rgb(10, 111, 158);
+}
+
+
+.no-cars {
+    margin-top: 6%;
+    margin-left: 12%;
+    font-size: 30px;
 }

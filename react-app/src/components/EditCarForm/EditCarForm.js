@@ -31,7 +31,6 @@ export default function EditCarForm({oldCar, carId, showModal, setShowModal}) {
 
     const [validationErrors, setValidationErrors] = useState([]);
     // const oldCar = useSelector((state) => state.car?.car?.cars)
-    console.log(oldCar);
 
     const [price, setPrice] = useState(oldCar?.price);
     const [mileage, setMileage] = useState(oldCar?.mileage);
@@ -121,9 +120,9 @@ export default function EditCarForm({oldCar, carId, showModal, setShowModal}) {
 
 
       return (
-        <div className="mainFormPageContainer">
-            <form className='formMainDiv' onSubmit={onLogin}>
-                <h2 className='playlist-form-title'>Continue to Host Your Vehicle.</h2>
+        <div className="main-edit-FormPageContainer">
+            <form className='car-formMainDiv' onSubmit={onLogin}>
+                <h2 className='playlist-form-title'>Edit Your Vehicle</h2>
                 <div className='errors'>
                     {validationErrors?.map((error, ind) => (
                         <div key={ind}>{error}</div>
@@ -131,17 +130,17 @@ export default function EditCarForm({oldCar, carId, showModal, setShowModal}) {
                 </div>
                 <div className='formWelcomeBox'>
                 </div>
-                <div>
+                <div className='info-outer-div'>
                     <InfoOne states={states}/>
                 </div>
-                <div>
+                <div className='info-outer-div'>
                     <InfoTwo states={states}/>
                 </div>
-                <div>
+                <div className='info-outer-div'>
                     <Images states={states}/>
                 </div>
-                <div className='loginSubmitButtons'>
-                <button type='submit' className='loginSubmitBtn'>Submit Car</button>
+                <div className='car-SubmitButtons'>
+                <button type='submit' className='car-formSubmitBtn'>Submit Car</button>
                 </div>
             </form>
         </div>

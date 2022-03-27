@@ -9,7 +9,7 @@ function EditCarFormModal({oldCar, carId}) {
 
     return (
       <div className='loginDiv'>
-        <button className='ednButton' onClick={() => setShowModal(true)}>Edit</button>
+        <button className='ed-del-button' onClick={() => setShowModal(true)}>Edit</button>
         {showModal && (
           <Modal onClose={() => setShowModal(false)}>
             <EditCarForm oldCar={oldCar} carId={carId} showModal={showModal} setShowModal={setShowModal} className='Modal'/>

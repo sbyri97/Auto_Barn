@@ -1,6 +1,6 @@
 .mainHomePage {
     margin-top: 63px;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     /* height: 100vh; */
 }
 
@@ -21,6 +21,15 @@
     height: 100px;
 }
 
+.logo-img-porsche {
+    height: 100px;
+    background: black;
+}
+
+/* .logo-img-porsche img{
+    background: black;
+} */
+
 .home-page-one-video-box {
     width: 85%; /* Can be in percentage also. */
     height: auto;
@@ -33,6 +42,7 @@
     width: 100%;
     height: 500px;
     object-fit: cover;
+    filter: brightness(50%);
 }
 .home-page-one-video-text {
     display: flex;
@@ -101,8 +111,75 @@
     height: 30vh;
     /* width: 97%; */
     top: 50%;
-    bottom: 50%;
     left: 50%;
-    right: 50%;
+    transform: translate(-50%, -50%);
+    /* right: 50%; */
     z-index: 3;
+}
+
+.home-page-vehicles-btn{
+    background:#000000;
+    color:#fff;
+    border:none;
+    position:relative;
+    min-height:40px;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+    margin-right: 5%;
+    font-size: 15px;
+    letter-spacing: 2px;
+    border: none;
+    font-family: "NexaExtraBold";
+    border-radius: 4px;
+}
+
+button.home-page-vehicles-btn:hover{
+    background:#fff;
+    color:#000000;
+  }
+  button.home-page-vehicles-btn:before,
+  button.home-page-vehicles-btn:after
+  {
+      background: #000000;
+      position:absolute;
+      top:0;
+      right:0;
+      height:2px;
+      width:0;
+      transition:400ms ease all;
+      content:'';
+  }
+  button.home-page-vehicles-btn:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  button.home-page-vehicles-btn:hover:before,
+  button.home-page-vehicles-btn:hover:after
+  {
+    width:100%;
+    transition:800ms ease all;
+  }
+
+  .about-outer-div{
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      left: 0;
+  }
+
+  .footer-links{
+      margin-left: 2%;
+  }
+
+  .footer-links a:nth-child(2){
+      margin-left: 1%;
+  }
+
+.footer-links a svg{
+    height: 25px;
+    width: 25px;
+    color: white;
 }

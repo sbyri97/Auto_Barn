@@ -32,7 +32,7 @@ export default function InfoOne({ states }) {
     ]
 
     const fuelTypeOptions = [
-        {label: 'Fuel *', value: ''},
+        {label: 'Fuel Type*', value: ''},
         {label: 'Gasoline', value: 'Gasoline'},
         {label: 'Hybrid', value: 'Hybrid'},
         {label: 'Electric', value: 'Electric'},
@@ -40,7 +40,7 @@ export default function InfoOne({ states }) {
 
 
     const bodyStyleOptions = [
-        {label: 'Body *', value: ''},
+        {label: 'Body Style*', value: ''},
         {label: 'Sedan', value: 'Sedan'},
         {label: 'SUV', value: 'SUV'},
         {label: 'Coupe', value: 'Coupe'},

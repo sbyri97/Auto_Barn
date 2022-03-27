@@ -1,0 +1,19 @@
+.main-unauthenticated-div{
+    margin-top: 5%;
+    background: black;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-unauthenticated-h2, .main-unauthenticated-p{
+    color: white;
+}
+
+.main-unauthenticated-auths{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

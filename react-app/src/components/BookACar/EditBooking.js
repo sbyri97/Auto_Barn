@@ -6,6 +6,7 @@ import { editTryACar } from "../../store/booking";
 import { getUserReservations } from "../../store/booking";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import './booking.css'
 // import $ from 'jquery'
 // import jquery from 'jquery'
 
@@ -94,11 +95,12 @@ export default function EditTryACar({carId}) {
             {sessionUser ? (
               <div className="try-car-container">
                 <form id="try-a-car-form" onSubmit={onTry}>
-                  <ul>
-                    {errors.map((error, index) => (
-                      <li key={index}>{error}</li>
+                  <h2 className="book-car-h2">Edit Car Booking</h2>
+                  <div className='errors'>
+                    {errors?.map((error, ind) => (
+                        <div key={ind}>{error}</div>
                     ))}
-                  </ul>
+                  </div>
                   <div className="create-date date">
                     <label htmlFor="startDate">Start Date</label>
                     {console.log(strtDate)}
