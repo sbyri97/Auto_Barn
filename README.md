@@ -1,8 +1,28 @@
-# AutoBarn
+<h1 align="center">
+    AutoBarn
+</h1>
 
-#### AutoBarn is a clone of auto trader for german vehicles where people can sell their german vehicle or buy the german vehicles. 
 
-#### Checkout out the clone : [AutoBarn](https://autobarn.herokuapp.com/)
+<p align="center">
+    <a href="https://autobarn.herokuapp.com/">Live App</a>
+</p>
+
+<p align="center">
+    AutoBarn is a clone of auto trader for german vehicles where people can sell their german vehicle or buy the german vehicles! If a buyer wishes to try a car before they buy, they may book the car for 5 days to try. Checkout the website to explore some of the luxurious vehicles in the world.
+</p>
+
+<h2>
+    Project Preview
+</h2>
+
+
+<p align="center">
+    Home Page
+</p>
+
+<!-- <p align="center">
+    <img src="https://media.giphy.com/media/wspRwT45FrxGNvK5Xc/giphy.gif" />
+</p> -->
 
 ## Technologies used:
 
