@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "MonstMed";
+    src: local("MonstMed"),
+     url("./fonts/Montserrat/static/Montserrat-Medium.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "MonsThin";
+    src: local("MonsThin"),
+     url("./fonts/Montserrat/static/Montserrat-Light.ttf") format("truetype");
+}

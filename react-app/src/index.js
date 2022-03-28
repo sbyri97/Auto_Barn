@@ -5,7 +5,7 @@ import './index.css';
 import App from './App';
 import configureStore from './store';
 import { ModalProvider } from './context/Modal';
-// import './font.css'
+import './font.css'
 import { BrowserRouter } from 'react-router-dom';
 
 const store = configureStore();

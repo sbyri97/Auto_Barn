@@ -10,6 +10,7 @@
 
 .main-unauthenticated-h2, .main-unauthenticated-p{
     color: white;
+    font-family: 'MonstMed';
 }
 
 .main-unauthenticated-auths{

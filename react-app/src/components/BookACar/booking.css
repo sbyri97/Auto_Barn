@@ -68,7 +68,7 @@ button.try-car-btn:hover, button.try-me-btn:hover{
     font-size: 15px;
     letter-spacing: 2px;
     border: none;
-    font-family: "NexaExtraBold";
+    font-family: "MonsThin";
 }
 
 .book-car-h2 {
@@ -85,4 +85,8 @@ button.try-car-btn:hover, button.try-me-btn:hover{
 
 .back-to-cars-link:hover {
     color: #ab1a1a;
+}
+.errors{
+    color: black;
+    margin-right: 9%;
 }

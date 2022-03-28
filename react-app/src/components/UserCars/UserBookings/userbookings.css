@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: column;
     margin-left: 150px;
+    font-family: 'MonstMed';
+
 }
 
 .booked-cars-main-grid {
@@ -30,6 +32,7 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
+    font-family: 'MonstMed';
 }
 
 .booked-car-img-div {
@@ -86,4 +89,9 @@ p:nth-child(2) {
 .no-cars-bookings{
     margin-top: 5%;
     margin-left: 12%;
+}
+
+.no-cars-bookings{
+    font-family: 'MonstMed';
+
 }

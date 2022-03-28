@@ -20,7 +20,7 @@
     line-height: 40px;
     inline-size: 250px;
     overflow-wrap: break-word;
-    font-family: "NexaHeavy";
+    font-family: "MonstMed";
     margin-left: auto;
     margin-right: auto;
   }
@@ -44,7 +44,7 @@
   .formInputIndiv::placeholder {
     color: rgb(182, 182, 182);
     font-size: 12px;
-    font-family: "NexaThin";
+    font-family: "MonsThin";
   }
 
   .forminputs input {
@@ -52,7 +52,7 @@
     border-radius: 5px;
     border: 1px solid rgb(0, 0, 0);
     margin-bottom: 15px;
-    font-family: "NexaLight";
+    font-family: "MonsThin";
   }
 
   button.submitBtn:hover{
@@ -97,7 +97,7 @@
     font-size: 15px;
     letter-spacing: 2px;
     border: none;
-    font-family: "NexaExtraBold";
+    font-family: "MonsThin";
     border-radius: 4px;
 }
 
@@ -117,7 +117,7 @@
   .orBox {
     margin-top: 25px;
     color: white;
-    font-family: "NexaLight";
+    font-family: "MonsThin";
   }
 
 
@@ -146,7 +146,7 @@
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    font-family: 'NexaHeavy';
+    font-family: 'MonsThin';
   }
 
   .loginButton {
@@ -155,7 +155,7 @@
       color: #ffffff;
       font-size: 13px;
       letter-spacing: 2px;
-      font-family: 'NexaHeavy';
+      font-family: 'MonsThin';
       font-size: 12px;
       cursor: pointer;
   }
@@ -165,7 +165,7 @@
     border-radius: 12px;
   }
 
-  .errors {
-    color: rgb(0, 0, 0);
+  .signupErrors {
+    color: white;
     margin-right: 9%;
   }

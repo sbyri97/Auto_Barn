@@ -183,3 +183,22 @@ button.home-page-vehicles-btn:hover{
     width: 25px;
     color: white;
 }
+
+.welcome-text, .home-info-txt{
+    font-family: "MonstMed";
+    /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif */
+}
+.ab-text{
+    font-family: "MonsThin";
+    font-size: 50px;
+}
+
+.home-page-quote-text{
+    font-family: "MonsThin";
+    font-size: 19px;
+}
+
+.home-page-vehicles-btn{
+    font-family: "MonsThin";
+    font-size: 15px;
+}

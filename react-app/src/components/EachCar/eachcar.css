@@ -1,6 +1,7 @@
 .single-car-main-div {
     margin-top: 100px;
     height: 100%;
+    font-family: 'MonstMed';
 }
 .single-car-upper-box {
     width: 100vw;
@@ -40,4 +41,14 @@
     grid-template-columns: repeat(4, 1fr);
     row-gap: 80px;
     column-gap: 1em;
+}
+
+.back-to-all-btn a{
+    border: 1px solid black;
+    color: rgb(0, 129, 250);
+}
+
+.back-to-all-btn a:visited{
+    border: 1px solid black;
+    color: rgb(0, 129, 250);
 }

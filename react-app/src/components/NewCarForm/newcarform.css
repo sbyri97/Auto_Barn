@@ -4,6 +4,7 @@
     margin-top: 5%;
     align-items: center;
     justify-content: center;
+    font-family: "MonstMed";
 }
 
 .main-edit-FormPageContainer{
@@ -104,7 +105,7 @@ textarea.image-formTextBox{
     border: none;
     /* border-radius: 50px; */
     /* cursor: pointer; */
-    font-family: "NexaExtraBold";
+    font-family: 'MonsThin';
 }
 
   button.car-formSubmitBtn:hover{
@@ -130,4 +131,8 @@ textarea.image-formTextBox{
   button.car-formSubmitBtn:hover:before,button:hover:after{
     width:100%;
     transition:800ms ease all;
+  }
+
+  .validationErrors{
+      color: black;
   }
