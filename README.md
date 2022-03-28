@@ -29,6 +29,22 @@
 </p>
 
 <p align="center">
+    All Vehicles Page
+</p>
+
+<p align="center">
+    <img width="1440" alt="Screen Shot 2022-03-27 at 11 22 29 PM" src="https://user-images.githubusercontent.com/85528106/160338186-b130ba0e-9380-400c-b2d8-cc10cd8efda2.png"/>
+</p>
+
+<p align="center">
+    User Account Page
+</p>
+
+<p align="center">
+    <img width="1440" alt="Screen Shot 2022-03-27 at 11 24 00 PM" src="https://user-images.githubusercontent.com/85528106/160338407-5de9bf93-9da5-4cc0-85f7-afed1b35fef8.png" />
+</p>
+
+<p align="center">
     404 Page
 </p>
 
