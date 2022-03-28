@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-    AutoBarn is a clone of auto trader for german vehicles where people can sell their german vehicle or buy the german vehicles! If a buyer wishes to try a car before they buy, they may book the car for 5 days to try. Checkout the website to explore some of the luxurious vehicles in the world.
+    AutoBarn is a clone of auto trader for german vehicles where people can sell their german vehicle or buy the german vehicles! If a buyer wishes to try a car before purchasing the vehicle, they may book the car for 5 days to try. Checkout the website to explore some of the luxurious vehicles in the world.
 </p>
 
 <h2>
