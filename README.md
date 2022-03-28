@@ -24,6 +24,18 @@
     <img width="1440" alt="Screen Shot 2022-03-27 at 6 41 45 PM" src="https://user-images.githubusercontent.com/85528106/160313222-7ee36704-aed5-45b0-abd3-1023f53b458a.png" />
 </p>
 
+<p align="center">
+    <img width="1440" alt="Screen Shot 2022-03-27 at 6 41 54 PM" src="https://user-images.githubusercontent.com/85528106/160313299-27682e2e-e7d2-4f14-a95f-1acfb04b7eb8.png" />
+</p>
+
+<p align="center">
+    404 Page
+</p>
+
+<p align="center">
+    <img width="1440" alt="Screen Shot 2022-03-27 at 6 54 03 PM" src="https://user-images.githubusercontent.com/85528106/160313461-b851f445-ab22-4899-9a13-105045cdc6ad.png" />
+</p>
+
 ## Technologies used:
 
 Javascript | Python | Node.js | NPM | Flask | SQLAlchemy | Alembic | Git | HTML / JSX | CSS | React | Redux | Heroku | Docker | AWS
