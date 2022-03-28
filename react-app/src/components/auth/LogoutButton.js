@@ -10,7 +10,7 @@ const LogoutButton = () => {
   const history = useHistory()
 
   const onLogout = async (e) => {
-    await dispatch(clearCarState())
+    // await dispatch(clearCarState())
     await dispatch(clearBookingState())
     await dispatch(logout());
     return history.push("/")

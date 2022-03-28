@@ -16,7 +16,8 @@ export default function EachCar() {
 
     const sessionUser = useSelector((state) => state.session.user);
 
-    const theCar = useSelector((state) => state.car?.car?.cars)
+    const theCar = useSelector((state) => state.car?.car[carId])
+    console.log(theCar);
     const bookingDeets = useSelector((state) => state?.booking?.carReservation[carId])
 
     const userBooked = bookingDeets?.user_id

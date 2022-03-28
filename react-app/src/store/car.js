@@ -181,29 +181,27 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
       case SUBMITTED_CAR: {
         newState = { ...state };
-        newState.car = action.car;
-        newState.userCars[action.car.id] = action.car;;
+        newState.car[action.car.id] = action.car;
+        // console.log(newState.car);
+        newState.userCars[action.car.id] = action.car;
         return newState;
       }
       case LOAD_CARS: {
         newState = initialState;
         action.cars.cars.forEach((car) => {
           newState.car[car.id] = car
+          // console.log(newState.car);
         })
         // console.log(action);
+        console.log(newState);
         return newState;
       }
       case LOAD_SINGLE_CAR: {
         newState = { ...state };
-        newState.car = action.car;
+        console.log(action.car.cars.id)
+        newState.car[action.car.cars.id] = action.car.cars;
         return newState;
       }
-      // case LOAD_USER_CARS: {
-      //   newState = { ...state };
-      //   newState.car = action.userCars;
-      //   console.log(action.user);
-      //   return newState;
-      // }
       case LOAD_USER_CARS: {
         newState = { ...state };
         action.userCars.cars.forEach((userCar) => {
@@ -213,7 +211,9 @@ export default function reducer(state = initialState, action) {
       }
       case DELETE_CAR: {
         newState = { ...state }
+        console.log(action.carId);
         delete newState.car[action.carId]
+        console.log(action.carId);
         delete newState.userCars[action.carId]
         return newState;
       }
