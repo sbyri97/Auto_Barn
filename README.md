@@ -20,9 +20,9 @@
     Home Page
 </p>
 
-<!-- <p align="center">
-    <img src="https://media.giphy.com/media/wspRwT45FrxGNvK5Xc/giphy.gif" />
-</p> -->
+<p align="center">
+    <img width="1440" alt="Screen Shot 2022-03-27 at 6 41 45 PM" src="https://user-images.githubusercontent.com/85528106/160313222-7ee36704-aed5-45b0-abd3-1023f53b458a.png" />
+</p>
 
 ## Technologies used:
 
@@ -61,7 +61,7 @@ pipenv install
 pipenv shell
 ```
 
-* while in the shell and within the backend (auto_barn/)directory
+* while in the shell and within the backend (Auto_Barn/)directory
 ```
 flask run
 ```
