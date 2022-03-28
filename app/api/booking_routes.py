@@ -45,7 +45,7 @@ def new_booking(id):
 
 
 
-            if((selected_start_date <= curr_booking_end_dates) and (curr_booking_start_dates < selected_end_date)):
+            if((selected_start_date < curr_booking_end_dates) and (curr_booking_start_dates < selected_end_date)):
                 errMessages = ['Car is already Booked for those dates']
                 return {'errors': errMessages}
 
@@ -73,16 +73,21 @@ def edit_booking(id):
         selected_start_date = int((form.data['start_date']).strftime("%Y%m%d"))
         selected_end_date = int((form.data['end_date']).strftime("%Y%m%d"))
 
+
         for i in range(len(curr_bookings)):
             curr_booking = curr_bookings[i]
+
+            if (curr_booking['id'] == id):
+                continue
+
             curr_booking_user = curr_booking['user_id']
             curr_booking_start_dates = int((curr_booking['start_date']).strftime("%Y%m%d"))
             curr_booking_end_dates = int((curr_booking['end_date']).strftime("%Y%m%d"))
 
             # SS <= EE  & E2 < SE
 
-            if((selected_start_date <= curr_booking_end_dates) and (curr_booking_start_dates < selected_end_date)):
-                errMessages = ['For Insurance Purposes You may not select new dates within your exisitng booking, please select new range of dates']
+            if((selected_start_date < curr_booking_end_dates) and (curr_booking_start_dates < selected_end_date)):
+                errMessages = ['Car is already booked for those dates']
                 return {'errors': errMessages}
 
         booking.user_id = curr_user_id
