@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { FaUserCircle, FaCaretDown, FaCaretUp, FaRegIdCard } from "react-icons/fa";
+import React, {useEffect, useState, useRef} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useHistory } from 'react-router-dom';
+import { FaCaretDown, FaCaretUp, FaRegIdCard, FaSearch } from "react-icons/fa";
+import { BiSearch } from 'react-icons/bi'
 import { RiUserShared2Line } from 'react-icons/ri'
 import LogoutButton from '../auth/LogoutButton';
 import './navbar.css'
@@ -9,9 +10,13 @@ import LoginFormModal from '../auth/LoginFormModal';
 import logo from '../../images/Transparent-logo.png'
 import DemoButton from './demo';
 import SignUpFormModal from '../auth/SignUpFormModal';
+// import { searchCars } from '../../store/car';
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session?.user)
+  const dispatch = useDispatch()
+  const history = useHistory()
+  // const wrapperRef = useRef(null);
 
   const [yesDrpDwn, setYesDrpDown] = useState(false)
 
@@ -30,6 +35,11 @@ const NavBar = () => {
 
     return () => document.removeEventListener("click", closeMenu);
   }, [yesDrpDwn]);
+
+  const searchButton = (e) => {
+    e.preventDefault()
+    history.push('/search')
+  }
 
   return (
     <nav className='main-navbar-container'>
@@ -60,6 +70,11 @@ const NavBar = () => {
       </div>
       :
       <div className='navbar-login-btn-container'>
+        <div className='navbar-searchbar'>
+          <button className='search-btn' onClick={searchButton}>
+            Search &nbsp; <FaSearch />
+          </button>
+        </div>
         <div className='navbar-all-vehicles'>
           <NavLink to='/allcars' exact={true} className='navlink-allcars'>
               Vehicles

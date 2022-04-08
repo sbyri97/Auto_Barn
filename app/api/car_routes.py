@@ -2,6 +2,7 @@ from flask import Blueprint, abort, session, request
 from flask_login import current_user
 from app.models import Car, Image, db, Booking
 from app.forms import NewCarForm
+from sqlalchemy import or_
 
 car_routes = Blueprint('cars', __name__)
 
@@ -25,6 +26,13 @@ def all_cars():
     return { "cars": cars_dicts }
 
 
+@car_routes.route('/search/<searchItem>')
+def search_cars(searchItem):
+    print(searchItem)
+    cars = Car.query.filter(or_(Car.make.ilike(f'%{searchItem}%'), Car.model.ilike(f'%{searchItem}%')))
+    cars_dicts = [car.to_dict() for car in cars]
+
+    return {"cars": cars_dicts}
 
 @car_routes.route('/<int:id>')
 def single_car(id):

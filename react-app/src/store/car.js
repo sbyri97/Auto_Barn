@@ -55,9 +55,20 @@ export const getCars = () => async (dispatch) => {
     dispatch(allCars(data))
     return data;
   }
-
-
 }
+
+// export const searchCars = (searchItem) => async (dispatch) => {
+
+//   const response = await fetch(`/api/cars/search/${searchItem}`)
+
+//   if(response.ok) {
+//     const data = await response.json();
+//     dispatch(allCars(data))
+//     return data;
+//   }
+// }
+
+
 
 export const getUserCars = (userId) => async (dispatch) => {
   const response = await fetch(`/api/cars/users/${userId}`)
@@ -135,8 +146,6 @@ export const editCar = (car, carId) => async (dispatch) => {
       imageUrl
   } = car
 
-  console.log('backedn carId', carId);
-
   const response = await fetch(`/api/cars/editCar/${carId}`, {
       method: 'PUT',
       headers: {
@@ -193,12 +202,10 @@ export default function reducer(state = initialState, action) {
           // console.log(newState.car);
         })
         // console.log(action);
-        console.log(newState);
         return newState;
       }
       case LOAD_SINGLE_CAR: {
         newState = { ...state };
-        console.log(action.car.cars.id)
         newState.car[action.car.cars.id] = action.car.cars;
         return newState;
       }
@@ -211,9 +218,7 @@ export default function reducer(state = initialState, action) {
       }
       case DELETE_CAR: {
         newState = { ...state }
-        console.log(action.carId);
         delete newState.car[action.carId]
-        console.log(action.carId);
         delete newState.userCars[action.carId]
         return newState;
       }
