@@ -45,7 +45,7 @@ export default function HomePage() {
                     <div className='home-page-one-video-text'>
                         <h2 className='welcome-text'>Welcome To</h2>
                         <h2 className='ab-text'>Auto Barn</h2>
-                        <h3 className='home-info-txt'>Pre-Owned German Vehciles For Sale</h3>
+                        <h3 className='home-info-txt'>Pre-Owned German Vehicles For Sale</h3>
                     </div>
                 </div>
             </div>
