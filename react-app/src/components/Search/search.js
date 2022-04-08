@@ -1,85 +1,48 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import * as carActions from '../../store/car'
-import './allcars.css'
+import { useDispatch } from 'react-redux';
+import { searchCars } from '../../store/search';
+import '../AllCars/allcars.css'
+import CarSearch from './CarSearch';
+import PreSearch from './preSearch';
 
-export default function () {
+export default function SearchCars() {
+    const [results, setResults] = useState(true)
+    const [searchItem, setSearchItem] = useState("")
 
-    const sessionUser = useSelector((state) => state.session.user)
-    const [isloading, setIsLoading] = useState(true);
     const dispatch = useDispatch()
 
-    const cars = useSelector((state) => Object.values(state.car?.car))
-
     useEffect(() => {
-        if(sessionUser) {
-            dispatch(carActions.getSearchCars());
-            setTimeout(() => {
-                setIsLoading(false);
-            }, 200)
-        }
-    }, [sessionUser, dispatch])
+        const delaySearch = setTimeout(() => {
+            dispatch(searchCars(searchItem))
+          }, 500)
+          return () => clearTimeout(delaySearch)
+    }, [searchItem, dispatch])
+
 
     return (
         <div>
-            {(cars.length !== 0 ) ? (
-                (sessionUser ?
-                    <div className='mainCarsContainer'>
-                        {isloading ? (
-                            <h2 className='laoding'>Cars Are Loading</h2>
-                        ):
-                            <div className='all-cars-container-title'>
-                                Results for
-                                <div className='all-cars-main-grid'>
-                                    {cars?.map((car, i) => (
-                                        <div className='each-car-outerbox' key={`${i}`}>
-                                            <div className='each-car-zip'>
-                                                <p className='each-car-zip-txt'>
-                                                    Location: {car.zip}
-                                                </p>
-                                            </div>
-                                            <div className='each-car-img-div'>
-                                                <img className='each-car-img'
-                                                src={car.images?.[0].url}
-                                                alt='each-car-img-alt'
-                                                onError={(e) => {
-                                                    e.target.src = "https://tonkinwilsonvillenissan.com/content/plugins/dealer-tower/assets/img/no_photo.jpg"
-                                                }}
-                                                />
-                                            </div>
-                                            <div className='each-car-details-div'>
-                                                <p className='each-car-detail'>
-                                                    {car.ext_color}
-                                                </p>
-                                                <p className='each-car-detail'>
-                                                   {car.year} {car.make} {car.model}
-                                                </p>
-                                                <p className='each-car-detail'>
-                                                    $ {Number(car?.price).toLocaleString()}
-                                                </p>
-                                                <p className='each-car-detail'>
-                                                    Mileage: {Number(car?.mileage).toLocaleString()}
-                                                </p>
-                                                <Link to={`/cars/${car.id}`} className="vehicle-detail-view-link">
-                                                    View Vehicle Details
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        }
-                    </div>
+            <div className='search-form-outer'>
+                <form className='search-form-inner'>
+                    <input className="search-bar-main-search"
+                    text='text'
+                    placeholder="Search for Vehicles by Make or Model"
+                    value={searchItem}
+                    onChange={(e) => {
+                        setSearchItem(e.target.value)
+                        setResults(false)
+                    }}
+                    />
+                </form>
+            </div>
+            <div className='search-results-main-container'>
+                {(!searchItem) ?
+                    <PreSearch />
                 :
-                <div className='noSessionUser'>
-                    <h2>Please Login or SignUp</h2>
-                </div>
-                )
-            )
-            :
-            <div className='no-cars'>There are no cars for sale at the moment</div>
-            }
+                    <div>
+                        <CarSearch searchItem={searchItem} results={results}/>
+                    </div>
+                }
+            </div>
         </div>
     )
 }

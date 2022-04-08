@@ -19,6 +19,7 @@ import EachCar from './components/EachCar/EachCar';
 import MyAccount from './components/MyAccount/MyAccount';
 import UnauthenticatedUser from './components/auth/UnAuthenticated';
 import PageNotFound from './components/NotFoundPages/pagenotfound';
+import SearchCars from './components/Search/search';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -71,6 +72,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/myaccount' exact={true} >
           <MyAccount />
+        </ProtectedRoute>
+        <ProtectedRoute path='/search' exact={true} >
+          <SearchCars />
         </ProtectedRoute>
         <Route path='*'>
           <PageNotFound />
