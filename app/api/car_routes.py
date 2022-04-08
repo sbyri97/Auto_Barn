@@ -40,7 +40,6 @@ def single_car(id):
 
     if cars is None:
         abort(404)
-
     backend_car = cars.to_dict()
 
 
