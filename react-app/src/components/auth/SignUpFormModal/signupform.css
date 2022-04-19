@@ -166,6 +166,6 @@
   }
 
   .signupErrors {
-    color: white;
+    color: red;
     margin-right: 9%;
   }
