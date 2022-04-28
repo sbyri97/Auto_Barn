@@ -1,4 +1,5 @@
 import React from "react";
+import UploadImage from "../ImageUpload/imageupload";
 
 export default function Images({ states }) {
     const {
@@ -8,7 +9,7 @@ export default function Images({ states }) {
   return (
     <div className="model TextContainer">
       <h3>&nbsp; Image Url:</h3>
-      <div className="formTextContainer">
+      {/* <div className="formTextContainer">
         <textarea
         className="image-formTextBox"
         type="textarea"
@@ -16,7 +17,8 @@ export default function Images({ states }) {
         value={imageUrl}
         onChange={(e) => {
             setImageUrl(e.target.value)}} />
-      </div>
+      </div> */}
+      <UploadImage />
       <br />
     </div>
   );
