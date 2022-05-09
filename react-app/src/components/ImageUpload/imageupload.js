@@ -5,8 +5,8 @@
 
 // const S3_BUCKET ='autobarn';
 // const REGION ='us-west-1';
-// const ACCESS_KEY ='AKIA3CIQTOHFC2V65DWK';
-// const SECRET_ACCESS_KEY ='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';
+// const ACCESS_KEY ='';
+// const SECRET_ACCESS_KEY ='';
 
 // const config = {
 //     bucketName: S3_BUCKET,
@@ -42,13 +42,15 @@
 import React ,{useState} from 'react';
 import AWS from 'aws-sdk'
 
-const S3_BUCKET ='autobarn';
+require('dotenv').config();
+
+const S3_BUCKET ='autobarn1';
 const REGION ='us-west-1';
 
 
 AWS.config.update({
-    accessKeyId: 'AFBF578B3FJN9DH3LL84',
-    secretAccessKey: 'xcv90798674rfgxcvbn080hf6'
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 })
 
 const myBucket = new AWS.S3({
