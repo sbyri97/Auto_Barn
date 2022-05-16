@@ -27,4 +27,4 @@ def image_upload(file, object_name=None):
     except Exception as e:
         return {'errors': str(e)}
 
-    return {'url': f'{S3_LOCATION}{file.filename}'}
+    return {'url': f'{S3_LOCATION}{file}'}
